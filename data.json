@@ -1,0 +1,29 @@
+{
+    "data": {
+        "sessions": {
+            "sesId": {
+                "question": "questionText",
+                "answers": {
+                    "answer1": 0,
+                    "answer2": 0,
+                    "answer3": 0,
+                    "answerN": 0,
+                    "votesCast": 0
+                }
+            },
+            "sesID2": {
+                "question": "questionText",
+                "answers": {
+                    "answer1": 0,
+                    "answer2": 0,
+                    "answer3": 0,
+                    "answerN": 0,
+                    "votesCast": 0
+                }
+            }
+        },
+        "collections": {
+            "some stuff...": {}
+        }
+    }
+}
