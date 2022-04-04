@@ -9,7 +9,9 @@
                     "answer3": 0,
                     "answerN": 0,
                     "votesCast": 0
-                }
+                },
+                "correctAnswer" : "string",
+                "reveal": false
             },
             "sesID2": {
                 "question": "questionText",
@@ -19,7 +21,9 @@
                     "answer3": 0,
                     "answerN": 0,
                     "votesCast": 0
-                }
+                },
+                "correctAnswer" : "string",
+                "reveal": false
             }
         },
         "collections": {
