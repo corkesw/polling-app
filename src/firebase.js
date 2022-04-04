@@ -10,7 +10,6 @@ import { secrets } from "./secrets";
 const firebaseConfig = secrets;
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+const firebaseApp = initializeApp(firebaseConfig);
 
-module.exports = app
+export default firebaseApp ;
