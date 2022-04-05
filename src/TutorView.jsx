@@ -7,11 +7,66 @@ const database = getDatabase(firebaseApp);
 const TutorView = () => {
   const [sesId, setSesId] = useState(null);
   const [votesCast, setVotesCast] = useState(0);
-  console.log(votesCast);
+  const [question, setQuestion] = useState("");
+  const [answers, setAnswers] = useState(["", ""]);
+  const [pollData, setPollData] = useState({
+    answers: [],
+    correctAnswer: null,
+    question: null,
+    reveal: false,
+  });
+
+  // console.log(question);
+
+  const questionChange = (e) => {
+    setQuestion(e.target.value);
+  };
+
+  const answerChange = (e, index) => {
+    setAnswers((currentAnswers) => {
+      const updatedAnswers = [...currentAnswers];
+      updatedAnswers[index] = e.target.value;
+      return updatedAnswers;
+    });
+  };
+
+  const addAnswer = (index) => {
+    console.log(index);
+    const updater = (currentAnswers) => {
+      const updatedAnswers = [...currentAnswers];
+      updatedAnswers.push("");
+      return updatedAnswers;
+    };
+    if (index === answers.length - 1) {
+      setAnswers(updater);
+    }
+    if (index === undefined) {
+      setAnswers(updater);
+    }
+  };
+
+  const removeAnswer = (index) => {
+    console.log(index);
+    setAnswers((currentAnswers) => {
+      const updatedAnswers = currentAnswers.filter((answer, i) => {
+        return index !== i;
+      });
+      return updatedAnswers;
+    });
+  };
+
+  console.log(answers);
+
+  const pollChange = (e, questionNumber) => {
+    setPollData((currentValue) => {
+      currentValue.answers[questionNumber] = e.target.value;
+    });
+  };
+
   useEffect(() => {
     onValue(ref(database, `${sesId}/answers/__votesCast__`), (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
+      // console.log(data);
       if (!data) setVotesCast(0);
       else setVotesCast(data.votes);
     });
@@ -56,14 +111,45 @@ const TutorView = () => {
       )}
       <p>Tutor View!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
       <form onSubmit={handleSubmit}>
+        {}
         <label htmlFor="question">Question</label>
-        <input type="text" id="question"></input>
-        <label htmlFor="answer1">Answer 1</label>
-        <input type="text" id="answer1"></input>
-        <label htmlFor="answer2">Answer 2</label>
-        <input type="text" id="answer2"></input>
-        <label htmlFor="answer3">Answer 3</label>
-        <input type="text" id="answer3"></input>
+        <input onChange={questionChange} type="text" id="question"></input>
+        {answers.map((answer, index) => {
+          return (
+            <div key={index}>
+              <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
+              <input
+                onBlur={() => {
+                  addAnswer(index);
+                }}
+                onChange={(e) => {
+                  answerChange(e, index);
+                }}
+                type="text"
+                id="answer1"
+                value={answers[index]}
+              ></input>
+              <button
+                onClick={() => {
+                  removeAnswer(index);
+                }}
+                type="button"
+              >
+                X
+              </button>
+            </div>
+          );
+        })}
+        <div>
+          <button
+            onClick={() => {
+              addAnswer();
+            }}
+            type="button"
+          >
+            Add answer
+          </button>
+        </div>
         <button>Submit</button>
       </form>
 
