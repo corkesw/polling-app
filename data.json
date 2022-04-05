@@ -8,10 +8,19 @@
                 "pollData": {
                     "question": "questionText",
                     "answers": {
-                        "answer1": 0,
-                        "answer2": 0,
-                        "answer3": 0,
-                        "answerN": 0,
+                        "0": {
+                            "answer": "dogs",
+                            "votes": 0
+                        },
+                        "1": {
+                            "answer": "cats",
+                            "votes": 0
+                        },
+                        "2": {
+                            "answer": "neither",
+                            "votes": 0
+                        },
+                       
                         "votesCast": 0
                     },
                     "correctAnswer": "answer1",
