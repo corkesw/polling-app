@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import firebaseApp from "../src/firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
+import "./styles/TutorView.css";
 
 const database = getDatabase(firebaseApp);
 
-const CreatePoll = ({ sesId }) => {
+const CreatePoll = ({ sessionId, setIsQuestion }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
-  const [pollData, setPollData] = useState({
-    answers: [],
-    correctAnswer: null,
-    question: null,
-    reveal: false,
-  });
 
   // controlled component for question
   const questionChange = (e) => {
@@ -28,17 +23,11 @@ const CreatePoll = ({ sesId }) => {
   };
   // adds an answer field if last answer field loses focus or if 'add' button is clicked
   const addAnswer = (index) => {
-    const updater = (currentAnswers) => {
+    setAnswers((currentAnswers) => {
       const updatedAnswers = [...currentAnswers];
       updatedAnswers.push("");
       return updatedAnswers;
-    };
-    if (index === answers.length - 1) {
-      setAnswers(updater);
-    }
-    if (index === undefined) {
-      setAnswers(updater);
-    }
+    });
   };
 
   // removes the answer at that index and closes the answer field
@@ -52,45 +41,68 @@ const CreatePoll = ({ sesId }) => {
     });
   };
 
-  //   useEffect(() => {
-  //     onValue(ref(database, `${sesId}/answers/__votesCast__`), (snapshot) => {
-  //       const data = snapshot.val();
-  //       // console.log(data);
-  //       if (!data) setVotesCast(0);
-  //       else setVotesCast(data.votes);
-  //     });
-  //   }, [sesId]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    set(ref(database, `${sesId}`), {
-      question,
-      answers: {},
+    //create answer object
+    const answerObject = {};
+    answers.forEach((answer, index) => {
+      if (answer.trim()) {
+        answerObject[index] = {
+          answer,
+          votes: 0,
+        };
+      }
     });
-    setPollData();
+    answerObject.votesCast = 0;
+    //set database with current poll data
+    const path = `data/sessions/${sessionId}/pollData`;
+    set(ref(database, path), {
+      answers: answerObject,
+      question,
+      correctAnswer: 1,
+      reveal: false,
+    })
+      .then(() => {
+        setIsQuestion(true); // switches tutor's view to poll admin
+        setAnswers(() => {
+          return [];
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div>
-      <p>Tutor View!!!!!!!!!!!!!!!!</p>
+    <div className="contentBox">
+      <h3 className="heading">Create Poll</h3>
       <form onSubmit={handleSubmit}>
         {}
-        <label htmlFor="question">Question</label>
-        <input onChange={questionChange} type="text" id="question"></input>
-        {answers.map((answer, index) => {
+        <div className="inputLine question">
+          <label htmlFor="question">Question</label>
+          <input
+            tabIndex="1"
+            onChange={questionChange}
+            type="text"
+            id="question"
+          />
+        </div>
+        {answers.map((_, index) => {
           return (
-            <div key={index}>
+            <div className="inputLine" key={index}>
               <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
+
               <input
-                onBlur={() => {
-                  addAnswer(index);
+                onKeyDown={(e) => {
+                  if (e.key === "Tab" && index === answers.length - 1) {
+                    addAnswer();
+                  }
                 }}
                 onChange={(e) => {
                   answerChange(e, index);
                 }}
                 type="text"
-                id="answer1"
+                id={`answer${index + 1}`}
                 value={answers[index]}
+                tabIndex={index + 2}
               ></input>
               <button
                 onClick={() => {
@@ -103,7 +115,8 @@ const CreatePoll = ({ sesId }) => {
             </div>
           );
         })}
-        <div>
+        <div className="inputLine">
+          <span></span>
           <button
             onClick={() => {
               addAnswer();
@@ -113,7 +126,10 @@ const CreatePoll = ({ sesId }) => {
             Add answer
           </button>
         </div>
-        <button>Submit</button>
+        <div className="inputLine">
+          <span></span>
+          <button>Submit</button>
+        </div>
       </form>
     </div>
   );

@@ -2,61 +2,89 @@ import React, { useState } from "react";
 import firebaseApp from "../src/firebase.js";
 import { getDatabase, ref, remove, set } from "firebase/database";
 import CreatePoll from "./CreatePoll.jsx";
+import PollAdmin from "./PollAdmin.jsx";
+import "./styles/TutorView.css";
 
 const database = getDatabase(firebaseApp);
 
 const TutorView = () => {
-  const [sesId, setSesId] = useState(null);
-  const [sesName, setSesName] = useState("");
+  const [sessionId, setSessionId] = useState("");
+  const [sessionName, setSessionName] = useState("");
+  const [isQuestion, setIsQuestion] = useState(false);
 
-  const createNode = (sesId) => {
-    const path = `data/sessions/${sesId}`;
+  const createDatabaseNodeWithSessionData = (sessionId) => {
+    const path = `data/sessions/${sessionId}`;
     set(ref(database, path), {
       sesData: {
         started: true,
         questionAsked: false,
-        sesName,
+        sessionName,
       },
     });
   };
   const clearSession = () => {
-    remove(ref(database, `data/sessions/${sesId}`));
-    setSesId(null);
+    remove(ref(database, `data/sessions/${sessionId}`)).then(() => {
+      setSessionId("");
+      setIsQuestion(false);
+      setSessionName("");
+    }).catch(err => console.log(err))
   };
+
+  const handleCopyClick = () => {
+    if ("clipboard" in navigator) {
+      navigator.clipboard.writeText(`localhost:3000/poll/${sessionId}`);
+    } else {
+      document.execCommand("copy", true, `localhost:3000/poll/${sessionId}`);
+    }
+  };
+
   return (
     <div>
-      <hr></hr>
-      {!sesId ? (
-        <form>
-          <label htmlFor="sesName"></label>
+      {!sessionId ? (
+        <form
+          className="sessionBox"
+          onSubmit={() => {
+            const sesString = "_" + Math.random().toString(36).slice(2, 9);
+            setSessionId(sesString);
+            createDatabaseNodeWithSessionData(sesString);
+          }}
+        >
+          <label htmlFor="sesName">Session Name: </label>
           <input
             onChange={(e) => {
-              setSesName(e.target.value);
+              setSessionName(e.target.value);
             }}
-            value={sesName}
+            value={sessionName}
             id="sesName"
             type="text"
           ></input>
-          <button
-            onClick={() => {
-              const sesString = "_" + Math.random().toString(36).substr(2, 9);
-              setSesId(sesString);
-              createNode(sesString);
-            }}
-          >
-            Start session
-          </button>
+          <button className="sesButton">Start session</button>
         </form>
       ) : (
-        <div>
+        <div className="sessionBox">
           <p>
-            session link : localhost:3000/poll/{sesId}
-            <button onClick={clearSession}>Clear session</button>
+            {sessionName} :{" "}
+            <span className="highlightText">
+              localhost:3000/poll/{sessionId}
+            </span>
+            <button onClick={handleCopyClick} className="sesButton">
+              Copy Link
+            </button>
+            <button className="sesButton" type="button" onClick={clearSession}>
+              Clear session
+            </button>
           </p>
         </div>
       )}
 
-      {sesId ? <CreatePoll sesId={sesId} /> : null}
+      {sessionId && !isQuestion ? (
+        <CreatePoll
+          sessionId={sessionId}
+          isQuestion={isQuestion}
+          setIsQuestion={setIsQuestion}
+        />
+      ) : null}
+      {sessionId && isQuestion ? <PollAdmin sessionId={sessionId} /> : null}
     </div>
   );
 };

@@ -1,0 +1,54 @@
+* {
+    padding:0;
+    margin: 0
+}
+
+button {
+    background-color:#5ED9CD;
+    border-radius: 5px;
+    color:#D95D6A;
+    padding: 0rem 1rem;
+}
+/* session box styling*/
+.sessionBox {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin: 2rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sesButton {
+    margin-left:1rem
+}
+
+.highlightText {
+    color:#5ED9CD;
+    font-weight: 600;
+}
+
+.contentBox {
+    background-color: #ffffff;
+    padding: 3rem;
+    margin: 2rem;
+  }
+  
+/* poll editor styling*/
+
+.heading {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.inputLine {
+    display:grid;
+    margin: 0.5rem;
+    grid-template-columns: 10rem 20rem 2rem;
+    justify-content: space-evenly;
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
