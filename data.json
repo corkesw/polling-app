@@ -2,16 +2,20 @@
     "data": {
         "sessions": {
             "sesId": {
-                "question": "questionText",
-                "answers": {
-                    "answer1": 0,
-                    "answer2": 0,
-                    "answer3": 0,
-                    "answerN": 0,
-                    "votesCast": 0
-                },
-                "correctAnswer" : "string",
-                "reveal": false
+                "sesData" : {"stuff" : "yes"},
+                "pollData" : {
+                    "question": "questionText",
+                    "answers": {
+                        "answer1": 0,
+                        "answer2": 0,
+                        "answer3": 0,
+                        "answerN": 0,
+                        "votesCast": 0
+                    },
+                    "correctAnswer" : "answer1",
+                    "reveal": false
+                }
+                
             },
             "sesID2": {
                 "question": "questionText",
@@ -22,7 +26,7 @@
                     "answerN": 0,
                     "votesCast": 0
                 },
-                "correctAnswer" : "string",
+                "correctAnswer" : "answer2",
                 "reveal": false
             }
         },
