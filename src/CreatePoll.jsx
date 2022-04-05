@@ -8,6 +8,8 @@ const database = getDatabase(firebaseApp);
 const CreatePoll = ({ sessionId, setIsQuestion }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
+  console.log(correctAnswers, "correct answers");
 
   // controlled component for question
   const questionChange = (e) => {
@@ -32,13 +34,35 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
 
   // removes the answer at that index and closes the answer field
   const removeAnswer = (index) => {
-    console.log(index);
     setAnswers((currentAnswers) => {
       const updatedAnswers = currentAnswers.filter((answer, i) => {
         return index !== i;
       });
       return updatedAnswers;
     });
+    // updates the correct answers array to remove and renumber any indices as required
+    setCorrectAnswers((currentAnswers) => {
+      const removedCorrect = currentAnswers.filter((item) => {
+        return item !== index;
+      });
+      return removedCorrect.map((item) => {
+        if (item < index) return item;
+        else return item - 1;
+      });
+    });
+  };
+  // updates the correct answers array if items are checked or unchecked
+  const handleCheckBox = (e, index) => {
+    if (e.target.checked) {
+      setCorrectAnswers((currentCorrectAnswers) => {
+        return [...currentCorrectAnswers, index];
+      });
+    }
+    if (!e.target.checked) {
+      setCorrectAnswers((currentCorrectAnswers) => {
+        return currentCorrectAnswers.filter((item) => item !== index);
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -103,6 +127,13 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
                 id={`answer${index + 1}`}
                 value={answers[index]}
                 tabIndex={index + 2}
+              ></input>
+              <input
+                onChange={(e) => {
+                  handleCheckBox(e, index);
+                }}
+                type="checkbox"
+                checked={correctAnswers.includes(index)}
               ></input>
               <button
                 onClick={() => {

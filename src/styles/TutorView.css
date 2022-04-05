@@ -44,8 +44,9 @@ button {
 .inputLine {
     display:grid;
     margin: 0.5rem;
-    grid-template-columns: 10rem 20rem 2rem;
+    grid-template-columns: 10rem 25rem 2rem 2rem;
     justify-content: space-evenly;
+    align-content: center;
 }
 
 .question {
