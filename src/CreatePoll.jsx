@@ -9,7 +9,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
- 
+
   // controlled component for question
   const questionChange = (e) => {
     setQuestion(e.target.value);
@@ -77,13 +77,13 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
         };
       }
     });
-    answerObject.votesCast = 0;
     //set database with current poll data
     const path = `data/sessions/${sessionId}/pollData`;
     set(ref(database, path), {
       answers: answerObject,
       question,
       reveal: false,
+      votesCast: {votes : 0},
     })
       .then(() => {
         setIsQuestion(true); // switches tutor's view to poll admin
