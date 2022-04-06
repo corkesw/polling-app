@@ -20,6 +20,12 @@ h2 {
   font-family: "Mark Pro Medium";
 }
 
+.contentBox {
+  background-color: #ffffff;
+  padding: 3rem;
+  margin: 2rem;
+}
+
 /*------ buttons -------*/
 
 .primaryButton {
@@ -30,6 +36,23 @@ h2 {
   text-decoration: none;
   color: #ffffff;
   font-family: "Mark Pro Medium";
+  border: none;
+}
+
+.secondaryButton {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #000000;
+  font-family: "Mark Pro Medium";
+  border: solid 2px #5ed9cd;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  color: #5ed9cd;
 }
 
 /*------ colours -------*/
