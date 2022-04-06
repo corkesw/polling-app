@@ -6,7 +6,8 @@
 button {
     background-color:#5ED9CD;
     border-radius: 5px;
-    color:#D95D6A;
+    border-color: #ffffff;
+    color:#ffffff;
     padding: 0rem 1rem;
 }
 /* session box styling*/
