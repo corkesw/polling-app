@@ -43,8 +43,9 @@ const TutorView = () => {
       {!sessionId ? (
         <form
           className="sessionBox"
-          onSubmit={() => {
+          onSubmit={(e) => {
             const sesString = "_" + Math.random().toString(36).slice(2, 9);
+            e.preventDefault()
             setSessionId(sesString);
             createDatabaseNodeWithSessionData(sesString);
           }}
