@@ -9,8 +9,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
-  console.log(correctAnswers, "correct answers");
-
+ 
   // controlled component for question
   const questionChange = (e) => {
     setQuestion(e.target.value);
@@ -74,6 +73,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
         answerObject[index] = {
           answer,
           votes: 0,
+          isCorrect: correctAnswers.includes(index),
         };
       }
     });
@@ -83,7 +83,6 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
     set(ref(database, path), {
       answers: answerObject,
       question,
-      correctAnswer: 1,
       reveal: false,
     })
       .then(() => {
