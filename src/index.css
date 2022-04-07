@@ -12,6 +12,10 @@ a {
   text-decoration: none;
 }
 
+a:focus {
+  background-color: transparent;
+}
+
 h1 {
   font-family: "Mark Pro Bold";
 }
@@ -20,16 +24,59 @@ h2 {
   font-family: "Mark Pro Medium";
 }
 
+.contentBox {
+  background-color: #ffffff;
+  padding: 3rem;
+  margin: 2rem;
+}
+
+.align-left {
+  text-align: left;
+}
+
+/*------ links -------*/
+
+.blue-link {
+  text-decoration: none;
+  color: #5ed9cd;
+}
+
+.blue-link:hover,
+:focus {
+  color: #7deaea;
+}
+
 /*------ buttons -------*/
 
 .primaryButton {
   background-color: #5ed9cd;
   padding: 1rem;
-  margin: 1rem;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
   font-family: "Mark Pro Medium";
+  border: none;
+  cursor: pointer;
+}
+
+.primaryButton:hover,
+:focus {
+  background-color: #7deaea;
+}
+
+.secondaryButton {
+  background-color: #ffffff;
+  padding: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #000000;
+  font-family: "Mark Pro Medium";
+  border: solid 2px #5ed9cd;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  color: #5ed9cd;
 }
 
 /*------ colours -------*/

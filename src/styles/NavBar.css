@@ -5,3 +5,15 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: #5ed9cd;
+  font-family: "Mark Pro Medium";
+  margin: 0rem 1rem;
+}
+
+.nav-link:hover,
+:focus {
+  color: #7deaea;
+}

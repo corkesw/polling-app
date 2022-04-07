@@ -1,160 +1,124 @@
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../src/firebase.js";
-import { getDatabase, ref, set, remove, onValue } from "firebase/database";
+import { getDatabase, ref, remove, set } from "firebase/database";
+import CreatePoll from "./CreatePoll.jsx";
+import PollAdmin from "./PollAdmin.jsx";
+import "./styles/TutorView.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const database = getDatabase(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 const TutorView = () => {
-  const [sesId, setSesId] = useState(null);
-  const [votesCast, setVotesCast] = useState(0);
-  const [question, setQuestion] = useState("");
-  const [answers, setAnswers] = useState(["", ""]);
-  const [pollData, setPollData] = useState({
-    answers: [],
-    correctAnswer: null,
-    question: null,
-    reveal: false,
-  });
-
-  // console.log(question);
-
-  const questionChange = (e) => {
-    setQuestion(e.target.value);
-  };
-
-  const answerChange = (e, index) => {
-    setAnswers((currentAnswers) => {
-      const updatedAnswers = [...currentAnswers];
-      updatedAnswers[index] = e.target.value;
-      return updatedAnswers;
-    });
-  };
-
-  const addAnswer = (index) => {
-    console.log(index);
-    const updater = (currentAnswers) => {
-      const updatedAnswers = [...currentAnswers];
-      updatedAnswers.push("");
-      return updatedAnswers;
-    };
-    if (index === answers.length - 1) {
-      setAnswers(updater);
-    }
-    if (index === undefined) {
-      setAnswers(updater);
-    }
-  };
-
-  const removeAnswer = (index) => {
-    console.log(index);
-    setAnswers((currentAnswers) => {
-      const updatedAnswers = currentAnswers.filter((answer, i) => {
-        return index !== i;
-      });
-      return updatedAnswers;
-    });
-  };
-
-  console.log(answers);
-
-  const pollChange = (e, questionNumber) => {
-    setPollData((currentValue) => {
-      currentValue.answers[questionNumber] = e.target.value;
-    });
-  };
+  const [sessionId, setSessionId] = useState("");
+  const [sessionName, setSessionName] = useState("");
+  const [isQuestion, setIsQuestion] = useState(false);
+  const [isUser, setIsUser] = useState(false);
+  console.log(isUser);
 
   useEffect(() => {
-    onValue(ref(database, `${sesId}/answers/__votesCast__`), (snapshot) => {
-      const data = snapshot.val();
-      // console.log(data);
-      if (!data) setVotesCast(0);
-      else setVotesCast(data.votes);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsUser(true);
+      } else {
+        setIsUser(false);
+      }
     });
-  }, [sesId]);
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const questionSet = e.target[0].value;
-    const answer1 = e.target[1].value;
-    const answer2 = e.target[2].value;
-    const answer3 = e.target[3].value;
-    set(ref(database, `${sesId}`), {
-      question: questionSet,
-      answers: {
-        [answer1]: { votes: 0 },
-        [answer2]: { votes: 0 },
-        [answer3]: { votes: 0 },
-        __votesCast__: { votes: 0 },
+  const createDatabaseNodeWithSessionData = (sessionId) => {
+    const path = `data/sessions/${sessionId}`;
+    set(ref(database, path), {
+      sesData: {
+        started: true,
+        questionAsked: false,
+        sessionName,
       },
     });
   };
   const clearSession = () => {
-    remove(ref(database, `${sesId}`));
-    setSesId(null);
+    remove(ref(database, `data/sessions/${sessionId}`))
+      .then(() => {
+        setSessionId("");
+        setIsQuestion(false);
+        setSessionName("");
+      })
+      .catch((err) => console.log(err));
   };
-  return (
-    <div>
-      <hr></hr>
-      {!sesId ? (
-        <button
-          onClick={() => {
-            setSesId("_" + Math.random().toString(36).substr(2, 9));
-          }}
-        >
-          Start session
-        </button>
-      ) : (
-        <div>
-          <p>session link : localhost:3000/poll/{sesId}</p>
-          <button onClick={clearSession}>Clear session</button>
-        </div>
-      )}
-      <p>Tutor View!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-      <form onSubmit={handleSubmit}>
-        {}
-        <label htmlFor="question">Question</label>
-        <input onChange={questionChange} type="text" id="question"></input>
-        {answers.map((answer, index) => {
-          return (
-            <div key={index}>
-              <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
-              <input
-                onBlur={() => {
-                  addAnswer(index);
-                }}
-                onChange={(e) => {
-                  answerChange(e, index);
-                }}
-                type="text"
-                id="answer1"
-                value={answers[index]}
-              ></input>
-              <button
-                onClick={() => {
-                  removeAnswer(index);
-                }}
-                type="button"
-              >
-                X
-              </button>
-            </div>
-          );
-        })}
-        <div>
-          <button
-            onClick={() => {
-              addAnswer();
-            }}
-            type="button"
-          >
-            Add answer
-          </button>
-        </div>
-        <button>Submit</button>
-      </form>
 
-      <p>Votes Cast: {votesCast}</p>
-    </div>
+  const handleCopyClick = () => {
+    if ("clipboard" in navigator) {
+      navigator.clipboard.writeText(`localhost:3000/poll/${sessionId}`);
+    } else {
+      document.execCommand("copy", true, `localhost:3000/poll/${sessionId}`);
+    }
+  };
+
+  return (
+    <>
+      {isUser ? (
+        <div>
+          {!sessionId ? (
+            <form
+              className="sessionBox"
+              onSubmit={(e) => {
+                const sesString = "_" + Math.random().toString(36).slice(2, 9);
+                e.preventDefault();
+                setSessionId(sesString);
+                createDatabaseNodeWithSessionData(sesString);
+              }}
+            >
+              <label className="input" htmlFor="sesName">
+                Session Name:{" "}
+              </label>
+              <input
+                className="input"
+                onChange={(e) => {
+                  setSessionName(e.target.value);
+                }}
+                value={sessionName}
+                id="sesName"
+                type="text"
+              ></input>
+              <button className="sesButton">Start session</button>
+            </form>
+          ) : (
+            <div className="sessionBox">
+              <p>
+                {sessionName} :{" "}
+                <span className="highlightText">
+                  localhost:3000/poll/{sessionId}
+                </span>
+                <button onClick={handleCopyClick} className="sesButton">
+                  Copy Link
+                </button>
+                <button
+                  className="sesButton"
+                  type="button"
+                  onClick={clearSession}
+                >
+                  Clear session
+                </button>
+              </p>
+            </div>
+          )}
+
+          {sessionId && !isQuestion ? (
+            <CreatePoll
+              sessionId={sessionId}
+              isQuestion={isQuestion}
+              setIsQuestion={setIsQuestion}
+            />
+          ) : null}
+          {sessionId && isQuestion ? <PollAdmin sessionId={sessionId} /> : null}
+        </div>
+      ) : (
+        <Link className="primaryButton" to="/login">
+          Tutor Login
+        </Link>
+      )}
+    </>
   );
 };
 

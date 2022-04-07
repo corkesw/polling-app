@@ -3,18 +3,32 @@
         "sessions": {
             "sesId": {
                 "sesData": {
-                    "stuff": "yes"
+                    "questionAsked": false,
+                    "sessionName": "Recursion 101",
+                    "started": true
                 },
                 "pollData": {
                     "question": "questionText",
                     "answers": {
-                        "answer1": 0,
-                        "answer2": 0,
-                        "answer3": 0,
-                        "answerN": 0,
-                        "votesCast": 0
+                        "0": {
+                            "answer": "dogs",
+                            "votes": 0,
+                            "isCorrect": true
+                        },
+                        "1": {
+                            "answer": "cats",
+                            "votes": 0,
+                            "isCorrect": false
+                        },
+                        "2": {
+                            "answer": "neither",
+                            "votes": 0,
+                            "isCorrent": false
+                        },
+                        "votesCast": {
+                            "votes": 0
+                        }
                     },
-                    "correctAnswer": "answer1",
                     "reveal": false
                 }
             },
