@@ -4,20 +4,29 @@
 }
 
 button {
-  background-color: #5ed9cd;
-  border-radius: 5px;
-  border-color: #ffffff;
-  color: #ffffff;
-  padding: 0rem 1rem;
+    background-color: #5ed9cd;
+    padding: 0.5rem 1rem;
+    margin: 0rem;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: "Mark Pro Medium";
+    border: none;
 }
 /* session box styling*/
 .sessionBox {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  margin: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin: 2rem;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input {
+    padding: 0.5rem 1rem;
+    margin: 0rem 1rem;
 }
 
 .sesButton {
@@ -42,12 +51,27 @@ button {
   margin-bottom: 2rem;
 }
 
+.pollForm {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .inputLine {
+<<<<<<< HEAD
   display: grid;
   margin: 0.5rem;
   grid-template-columns: 10rem 25rem 2rem 2rem;
   justify-content: space-evenly;
   align-content: center;
+=======
+    display:grid;
+    margin: 0.5rem;
+    grid-template-columns: 10rem 25rem 2rem 2rem;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+>>>>>>> 75ad612d5548437176d54616933d8969ae1d4523
 }
 
 .question {

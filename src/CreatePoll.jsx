@@ -83,7 +83,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
       answers: answerObject,
       question,
       reveal: false,
-      votesCast: {votes : 0},
+      votesCast: { votes: 0 },
     })
       .then(() => {
         setIsQuestion(true); // switches tutor's view to poll admin
@@ -97,11 +97,12 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
   return (
     <div className="contentBox">
       <h3 className="heading">Create Poll</h3>
-      <form onSubmit={handleSubmit}>
+      <form className="pollForm"onSubmit={handleSubmit}>
         {}
         <div className="inputLine question">
-          <label htmlFor="question">Question</label>
+          <label className="input" htmlFor="question">Question</label>
           <input
+          className="input"
             tabIndex="1"
             onChange={questionChange}
             type="text"
@@ -114,6 +115,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
               <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
 
               <input
+              className="input"
                 onKeyDown={(e) => {
                   if (e.key === "Tab" && index === answers.length - 1) {
                     addAnswer();
@@ -140,7 +142,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
                 }}
                 type="button"
               >
-                X
+              X
               </button>
             </div>
           );

@@ -14,7 +14,7 @@ const Home = () => {
       </div>
       <div className="contentBox">
         <h2 className="blue-1">{">"} I am a tutor</h2>
-        <Link className="primaryButton" to="/tutor">
+        <Link className="primaryButton" to="/login">
           Login
         </Link>
       </div>
