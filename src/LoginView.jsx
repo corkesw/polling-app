@@ -33,8 +33,8 @@ const LoginView = () => {
   };
 
   return (
-    <div className="contentBox">
-      <h2 className="blue-2">login</h2>
+    <div className="contentBox align-left">
+      <h2 className="blue-1">Login</h2>
       <form onSubmit={logInWithEmailAndPassword}>
         <label htmlFor="email">email</label>
         <input
@@ -48,10 +48,10 @@ const LoginView = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="secondaryButton">Login</button>
+        <button className="primaryButton">Login</button>
       </form>
-      <Link className="primaryButton" to="/register">
-        Register
+      <Link className="blue-link" to="/register">
+        Not got an account? Register here.
       </Link>
     </div>
   );

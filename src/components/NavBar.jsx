@@ -18,12 +18,20 @@ const NavBar = () => {
     navigate("/");
   };
 
-  const renderButton = () => {
+  const renderButtons = () => {
     if (user) {
       return (
-        <button className="primaryButton" onClick={logout}>
-          Logout
-        </button>
+        <div>
+          <Link className="nav-link" to="/tutor">
+            Polls
+          </Link>
+          <Link className="nav-link" to="/admin">
+            Admin
+          </Link>
+          <button className="primaryButton" onClick={logout}>
+            Logout
+          </button>
+        </div>
       );
     } else {
       return (
@@ -38,7 +46,7 @@ const NavBar = () => {
       <Link to="/">
         <h1 className="grey-1">Northcoders Polling App</h1>
       </Link>
-      {renderButton()}
+      {renderButtons()}
     </nav>
   );
 };

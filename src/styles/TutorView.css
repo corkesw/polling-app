@@ -1,56 +1,55 @@
 * {
-    padding:0;
-    margin: 0
+  padding: 0;
+  margin: 0;
 }
 
 button {
-    background-color:#5ED9CD;
-    border-radius: 5px;
-    border-color: #ffffff;
-    color:#ffffff;
-    padding: 0rem 1rem;
+  background-color: #5ed9cd;
+  border-radius: 5px;
+  border-color: #ffffff;
+  color: #ffffff;
+  padding: 0rem 1rem;
 }
 /* session box styling*/
 .sessionBox {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    margin: 2rem;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .sesButton {
-    margin-left:1rem
+  margin-left: 1rem;
 }
 
 .highlightText {
-    color:#5ED9CD;
-    font-weight: 600;
+  color: #5ed9cd;
+  font-weight: 600;
 }
 
 .contentBox {
-    background-color: #ffffff;
-    padding: 3rem;
-    margin: 2rem;
-  }
-  
+  background-color: #ffffff;
+  padding: 3rem;
+  margin: 2rem;
+}
+
 /* poll editor styling*/
 
 .heading {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .inputLine {
-    display:grid;
-    margin: 0.5rem;
-    grid-template-columns: 10rem 25rem 2rem 2rem;
-    justify-content: space-evenly;
-    align-content: center;
+  display: grid;
+  margin: 0.5rem;
+  grid-template-columns: 10rem 25rem 2rem 2rem;
+  justify-content: space-evenly;
+  align-content: center;
 }
 
 .question {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
-

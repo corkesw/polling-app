@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "./styles/LoginView.css";
-import firebaseApp from "../src/firebase.js";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import "../styles/LoginView.css";
+import firebaseApp from "../firebase.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const auth = getAuth(firebaseApp);
-
-const RegisterView = () => {
+const RegisterUser = ({ auth }) => {
   const [user, loading, error] = useAuthState(auth);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/tutor");
-  }, [user, loading, navigate]);
+  }, [loading]);
 
   const register = (event) => {
     event.preventDefault();
@@ -29,15 +25,9 @@ const RegisterView = () => {
       });
   };
   return (
-    <div className="contentBox">
-      <h2 className="blue-2">login</h2>
+    <div className="contentBox align-left">
+      <h2 className="blue-1">Register</h2>
       <form onSubmit={register}>
-        <label htmlFor="name">name</label>
-        <input
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
         <label htmlFor="email">email</label>
         <input
           id="email"
@@ -50,10 +40,10 @@ const RegisterView = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="secondaryButton">Login</button>
+        <button className="primaryButton">Register</button>
       </form>
     </div>
   );
 };
 
-export default RegisterView;
+export default RegisterUser;
