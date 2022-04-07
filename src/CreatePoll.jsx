@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import firebaseApp from "../src/firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 import "./styles/TutorView.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const database = getDatabase(firebaseApp);
 
-const CreatePoll = ({ sessionId, setIsQuestion }) => {
+const CreatePoll = ({ setIsQuestion }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
+  const { sessionId } = useParams();
+  const navigate = useNavigate();
 
   // controlled component for question
   const questionChange = (e) => {
@@ -90,6 +93,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
         setAnswers(() => {
           return [];
         });
+        navigate(`/tutor/${sessionId}/admin`);
       })
       .catch((err) => console.log(err));
   };
@@ -97,12 +101,14 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
   return (
     <div className="contentBox">
       <h3 className="heading">Create Poll</h3>
-      <form className="pollForm"onSubmit={handleSubmit}>
+      <form className="pollForm" onSubmit={handleSubmit}>
         {}
         <div className="inputLine question">
-          <label className="input" htmlFor="question">Question</label>
+          <label className="input" htmlFor="question">
+            Question
+          </label>
           <input
-          className="input"
+            className="input"
             tabIndex="1"
             onChange={questionChange}
             type="text"
@@ -115,7 +121,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
               <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
 
               <input
-              className="input"
+                className="input"
                 onKeyDown={(e) => {
                   if (e.key === "Tab" && index === answers.length - 1) {
                     addAnswer();
@@ -142,7 +148,7 @@ const CreatePoll = ({ sessionId, setIsQuestion }) => {
                 }}
                 type="button"
               >
-              X
+                X
               </button>
             </div>
           );
