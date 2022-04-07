@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/poll/:sesId" element={<StudentView />}></Route>
-          <Route path="/tutor" element={<TutorView />}></Route>
+          <Route path="/tutor/*" element={<TutorView />}></Route>
           <Route path="/login" element={<LoginView />}></Route>
           <Route path="/register" element={<RegisterView />}></Route>
           <Route path="/admin" element={<AdminView />}></Route>
