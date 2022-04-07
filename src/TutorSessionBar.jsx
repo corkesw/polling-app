@@ -3,6 +3,7 @@ import { getDatabase, ref, remove, set } from "firebase/database";
 import "./styles/TutorView.css";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const database = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -15,12 +16,25 @@ const TutorSessionBar = ({
   sessionName,
 }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("sessionId") &&
+      localStorage.getItem("sessionName")
+    ) {
+      setSessionId(localStorage.getItem("sessionId"));
+      setSessionName(localStorage.getItem("sessionName"));
+    }
+  }, []);
+
   const clearSession = () => {
     remove(ref(database, `data/sessions/${sessionId}`))
       .then(() => {
         setSessionId("");
         setIsQuestion(false);
         setSessionName("");
+        localStorage.removeItem("sessionId");
+        localStorage.removeItem("sessionName");
         navigate("/tutor");
       })
       .catch((err) => console.log(err));
@@ -41,6 +55,8 @@ const TutorSessionBar = ({
     e.preventDefault();
     setSessionId(sesString);
     createDatabaseNodeWithSessionData(sesString);
+    localStorage.setItem("sessionId", sesString);
+    localStorage.setItem("sessionName", sessionName);
     navigate(`/tutor/${sesString}`);
   };
 

@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PieMaker from "./components/PieMaker";
@@ -11,6 +11,8 @@ const PollAdmin = () => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
   const [votesCast, setVotesCast] = useState(0);
+  const [reveal, setReveal] = useState(false);
+
   const colours = [
     "#FF6633",
     "#FFB399",
@@ -65,12 +67,18 @@ const PollAdmin = () => {
   ];
   const { sessionId } = useParams();
 
+  const revealAnswer = () => {
+    const path = `data/sessions/${sessionId}/pollData/reveal`;
+    set(ref(database, path), !reveal);
+  };
+
   useEffect(() => {
     const path = `data/sessions/${sessionId}/pollData`;
     onValue(ref(database, path), (snapshot) => {
       const data = snapshot.val();
       setQuestion(data.question);
       setVotesCast(data.votesCast.votes);
+      setReveal(data.reveal);
       setAnswers(() => {
         const answers = [];
         for (const key in data.answers) {
@@ -86,16 +94,21 @@ const PollAdmin = () => {
     });
   }, []);
 
-  return  ( <>
-    <div>
+  return (
+    <>
       <div>
-        <h3>Poll Admin</h3>
-        <p>{question}</p>
+        <div>
+          <h3>Poll Admin</h3>
+          <p>{question}</p>
 
-        <PieMaker answers={answers} votesCast={votesCast} />
+          <PieMaker answers={answers} votesCast={votesCast} />
+          <button onClick={revealAnswer}>
+            {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
+          </button>
+        </div>
       </div>
-    </div>
-  </>)
+    </>
+  );
 };
 
 export default PollAdmin;

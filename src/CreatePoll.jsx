@@ -118,7 +118,7 @@ const CreatePoll = ({ setIsQuestion }) => {
         {answers.map((_, index) => {
           return (
             <div className="inputLine" key={index}>
-              <label htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
+              <label classNAme="input" htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
 
               <input
                 className="input"
