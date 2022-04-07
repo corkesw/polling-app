@@ -6,7 +6,8 @@ nav {
   align-items: center;
 }
 
-.nav-link {
+.nav-link,
+.nav-link:visited {
   text-decoration: none;
   color: #5ed9cd;
   font-family: "Mark Pro Medium";

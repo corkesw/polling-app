@@ -44,7 +44,7 @@ const NavBar = () => {
   return (
     <nav>
       <Link to="/">
-        <h1 className="grey-1">Northcoders Polling App</h1>
+        <h1 className="grey-1 align-left">Northcoders Polling App</h1>
       </Link>
       {renderButtons()}
     </nav>

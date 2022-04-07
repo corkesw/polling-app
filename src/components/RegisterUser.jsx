@@ -11,6 +11,7 @@ const RegisterUser = ({ auth }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
+    console.log(auth);
     if (loading) return;
   }, [loading]);
 
@@ -26,7 +27,7 @@ const RegisterUser = ({ auth }) => {
   };
   return (
     <div className="contentBox align-left">
-      <h2 className="blue-1">Register</h2>
+      <h2 className="blue-1">Register a new user</h2>
       <form onSubmit={register}>
         <label htmlFor="email">email</label>
         <input
