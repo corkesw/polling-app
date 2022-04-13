@@ -7,6 +7,8 @@ const database = getDatabase(firebaseApp);
 
 const StudentView = () => {
 	const { sesId } = useParams();
+	const sessionRef = ref(database, `data/sessions/${sesId}`);
+
 	const [question, setQuestion] = useState("");
 	const [answers, setAnswers] = useState([]);
 	const [votesCast, setVotesCast] = useState({});
@@ -14,10 +16,15 @@ const StudentView = () => {
 	const [correctCount, setCorrectCount] = useState(0);
 	const [answerRevealed, setAnswerRevealed] = useState(false);
 
-	// Will listen for a change in the question state to rerender and allow the student to vote again when question has changed
+	/*
+	When realtime db updates, set the question state
+	the state update will trigger the useEffect:
+		- set the different state to reflect the data from new poll in the same session
+		- re-enable the vote buttons so student can vote on new poll
+	*/
 	useEffect(() => {
+		setAnswerRevealed(false);
 		setHasVoted(false);
-		const sessionRef = ref(database, `data/sessions/${sesId}`);
 
 		onValue(sessionRef, (snapshot) => {
 			const data = snapshot.val();
@@ -41,29 +48,26 @@ const StudentView = () => {
 	}, [sesId, question]);
 
 	const vote = ({ answer, isCorrect }, answerKey) => {
-		// Set hasVoted state to disable button for additional votes
+		// Set hasVoted state to disable button and stop multiple votes on same question
 		setHasVoted(true);
 
-		// Increment the answer voted
-		// prettier-ignore
+		// Increment the answer vote in db
 		set(ref(database, `data/sessions/${sesId}/pollData/answers/${answerKey}`), {
-				answer,
-				isCorrect,
-				votes: increment(1),
-			}
-		);
+			answer,
+			isCorrect,
+			votes: increment(1),
+		});
 
-		// Increment the total amount of votes
+		// Increment the total amount of votes in db
 		set(ref(database, `data/sessions/${sesId}/pollData/votesCast`), {
 			votes: increment(1),
 		});
 
-		// Store correct answer in sessionStorage
+		// Keep a tally of how many questions have been answered correctly
 		if (isCorrect) {
-			setCorrectCount((currentCorrect) => {
-				return (currentCorrect += 1);
+			setCorrectCount((currentCount) => {
+				return (currentCount += 1);
 			});
-			sessionStorage.setItem("totalCorrect", correctCount);
 		}
 	};
 
