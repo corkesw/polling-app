@@ -76,21 +76,29 @@ const PollAdmin = () => {
     const path = `data/sessions/${sessionId}/pollData`;
     onValue(ref(database, path), (snapshot) => {
       const data = snapshot.val();
-      setQuestion(data.question);
-      setVotesCast(data.votesCast.votes);
-      setReveal(data.reveal);
-      setAnswers(() => {
-        const answers = [];
-        for (const key in data.answers) {
-          console.log();
-          answers.push({
-            name: data.answers[key].answer,
-            value: data.answers[key].votes,
-            fill: colours[key],
-          });
-        }
-        return answers;
-      });
+      // if logic required to prevent error when session is cleared and node is deleted
+      if (data) {
+        setQuestion(data.question);
+        setVotesCast(data.votesCast.votes);
+        setReveal(data.reveal);
+        setAnswers(() => {
+          const answers = [];
+          for (const key in data.answers) {
+            console.log();
+            answers.push({
+              name: data.answers[key].answer,
+              value: data.answers[key].votes,
+              fill: colours[key],
+            });
+          }
+          return answers;
+        });
+      } else {
+        setQuestion("");
+        setVotesCast(0);
+        setReveal(false);
+        setAnswers([]);
+      }
     });
   }, []);
 
