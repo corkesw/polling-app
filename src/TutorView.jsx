@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../src/firebase.js";
-import { getDatabase } from "firebase/database";
 import CreatePoll from "./CreatePoll.jsx";
 import PollAdmin from "./PollAdmin.jsx";
 import "./styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import TutorSessionBar from "./TutorSessionBar.jsx";
 
-const database = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
 
 const TutorView = () => {

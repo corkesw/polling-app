@@ -1,12 +1,10 @@
 import firebaseApp from "../src/firebase.js";
 import { getDatabase, ref, remove, set } from "firebase/database";
 import "./styles/TutorView.css";
-import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const database = getDatabase(firebaseApp);
-const auth = getAuth(firebaseApp);
 
 const TutorSessionBar = ({
   sessionId,
@@ -25,7 +23,7 @@ const TutorSessionBar = ({
       setSessionId(localStorage.getItem("sessionId"));
       setSessionName(localStorage.getItem("sessionName"));
     }
-  }, []);
+  }, [setSessionId, setSessionName]);
 
   const clearSession = () => {
     remove(ref(database, `data/sessions/${sessionId}`))
