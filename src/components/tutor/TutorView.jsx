@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../../firebase.js";
-import CreatePoll from "../../CreatePoll.jsx";
+import CreatePoll from "./CreatePoll.jsx";
 import PollAdmin from "./PollAdmin.jsx";
 import "../../styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

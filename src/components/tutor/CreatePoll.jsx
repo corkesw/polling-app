@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import firebaseApp from "../src/firebase.js";
+import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
-import "./styles/TutorView.css";
+import "../../styles/TutorView.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const database = getDatabase(firebaseApp);
@@ -99,16 +99,16 @@ const CreatePoll = ({ setIsQuestion }) => {
   };
 
   return (
-    <div className="contentBox">
+    <div className="content__box">
       <h3 className="heading">Create Poll</h3>
-      <form className="pollForm" onSubmit={handleSubmit}>
+      <form className="poll__form" onSubmit={handleSubmit}>
         {}
-        <div className="inputLine question">
+        <div className="question">
           <label className="input" htmlFor="question">
             Question
           </label>
           <input
-            className="input"
+            className="question__input"
             tabIndex="1"
             onChange={questionChange}
             type="text"
@@ -117,7 +117,7 @@ const CreatePoll = ({ setIsQuestion }) => {
         </div>
         {answers.map((_, index) => {
           return (
-            <div className="inputLine" key={index}>
+            <div className="input__line" key={index}>
               <label className="input" htmlFor={`answer${index + 1}`}>
                 Answer {index + 1}
               </label>
@@ -137,14 +137,21 @@ const CreatePoll = ({ setIsQuestion }) => {
                 value={answers[index]}
                 tabIndex={index + 2}
               ></input>
-              <input
-                onChange={(e) => {
-                  handleCheckBox(e, index);
-                }}
-                type="checkbox"
-                checked={correctAnswers.includes(index)}
-              ></input>
+
+              <label className="container">
+                <input
+                  className="checkbox"
+                  onChange={(e) => {
+                    handleCheckBox(e, index);
+                  }}
+                  type="checkbox"
+                  checked={correctAnswers.includes(index)}
+                ></input>
+                <div class="checkmark"></div>
+              </label>
+
               <button
+                className="delete__button"
                 onClick={() => {
                   removeAnswer(index);
                 }}
@@ -155,7 +162,7 @@ const CreatePoll = ({ setIsQuestion }) => {
             </div>
           );
         })}
-        <div className="inputLine">
+        <div className="input__line">
           <span></span>
           <button
             onClick={() => {
@@ -166,7 +173,7 @@ const CreatePoll = ({ setIsQuestion }) => {
             Add answer
           </button>
         </div>
-        <div className="inputLine">
+        <div className="input__line">
           <span></span>
           <button>Submit</button>
         </div>

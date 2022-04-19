@@ -68,7 +68,7 @@ const TutorSessionBar = ({
   return (
     <div>
       {!sessionId ? (
-        <form className="sessionBox" onSubmit={handleSubmit}>
+        <form className="session__box" onSubmit={handleSubmit}>
           <label className="input" htmlFor="sesName">
             Session Name:{" "}
           </label>
@@ -81,19 +81,19 @@ const TutorSessionBar = ({
             id="sesName"
             type="text"
           ></input>
-          <button className="sesButton">Start session</button>
+          <button className="ses__button">Start session</button>
         </form>
       ) : (
-        <div className="sessionBox">
+        <div className="session__box">
           <p>
             {sessionName} :{" "}
-            <span className="highlightText">
+            <span className="highlight__text">
               localhost:3000/poll/{sessionId}
             </span>
-            <button onClick={handleCopyClick} className="sesButton">
+            <button onClick={handleCopyClick} className="ses__button">
               Copy Link
             </button>
-            <button className="sesButton" type="button" onClick={clearSession}>
+            <button className="ses__button" type="button" onClick={clearSession}>
               Clear session
             </button>
           </p>
