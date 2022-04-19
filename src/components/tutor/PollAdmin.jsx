@@ -1,9 +1,9 @@
 import { getDatabase, onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PieMaker from "./components/PieMaker";
-import firebaseApp from "./firebase";
-import "./styles/TutorView.css";
+import PieMaker from "../PieMaker";
+import firebaseApp from "../../firebase";
+import "../../styles/TutorView.css";
 
 const database = getDatabase(firebaseApp);
 

@@ -1,6 +1,6 @@
-import firebaseApp from "../src/firebase.js";
+import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, remove, set } from "firebase/database";
-import "./styles/TutorView.css";
+import "../../styles/TutorView.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 

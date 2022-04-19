@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import firebaseApp from "../src/firebase.js";
-import CreatePoll from "./CreatePoll.jsx";
+import firebaseApp from "../../firebase.js";
+import CreatePoll from "../../CreatePoll.jsx";
 import PollAdmin from "./PollAdmin.jsx";
-import "./styles/TutorView.css";
+import "../../styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Link, Route, Routes } from "react-router-dom";
 import TutorSessionBar from "./TutorSessionBar.jsx";
