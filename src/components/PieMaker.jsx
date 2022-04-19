@@ -6,10 +6,8 @@ const PieMaker = ({ answers }) => {
   let renderLabel = function (entry) {
     if (entry.value === 0) return;
     const votesCast = answers.reduce((previousAnswer, currentAnswer) => {
-      // console.log(previousAnswer, currentAnswer.value)
       return previousAnswer + currentAnswer.value;
     }, 0);
-    // console.log(votesCast);
     return `${entry.name.slice(0, 25)} ${(
       (entry.value / votesCast) *
       100
