@@ -2,17 +2,17 @@ import React from "react";
 
 const AnswersBeforeReveal = ({ answers, userAnswer, hasVoted, vote }) => {
 	// Conditional rendering to apply specific className to the user's selected button
-	return answers.map((answer, index) => {
-		return answer.answer === userAnswer ? (
+	return answers.map((answerData, index) => {
+		return answerData.answer === userAnswer ? (
 			<p key={index}>
 				<button
 					className="selectedVoteButton"
 					disabled={hasVoted}
 					onClick={() => {
-						vote(answer, index);
+						vote(answerData, index);
 					}}
 				>
-					{answer.answer}
+					{answerData.answer}
 				</button>
 			</p>
 		) : (
@@ -21,10 +21,10 @@ const AnswersBeforeReveal = ({ answers, userAnswer, hasVoted, vote }) => {
 					className={userAnswer ? "unselectedVoteButton" : "voteButton"}
 					disabled={hasVoted}
 					onClick={() => {
-						vote(answer, index);
+						vote(answerData, index);
 					}}
 				>
-					{answer.answer}
+					{answerData.answer}
 				</button>
 			</p>
 		);

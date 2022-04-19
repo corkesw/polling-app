@@ -36,17 +36,17 @@ const StudentView = () => {
 
 			const question = data.pollData.question;
 
-			const answers = [];
+			const answerCollection = [];
 			for (const key in data.pollData.answers) {
-				const answerOption = data.pollData.answers[key];
-				answers.push(answerOption);
-				if (answerOption.isCorrect) setCorrectAnswer(answerOption.answer);
+				const answerData = data.pollData.answers[key];
+				answerCollection.push(answerData);
+				if (answerData.isCorrect) setCorrectAnswer(answerData.answer);
 			}
 
 			const answerRevealed = data.pollData.reveal;
 
 			setQuestion(question);
-			setAnswers(answers);
+			setAnswers(answerCollection);
 			setAnswerRevealed(answerRevealed);
 		});
 	}, [question]);
