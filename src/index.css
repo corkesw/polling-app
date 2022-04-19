@@ -110,6 +110,10 @@ h3 {
   color: #f1f2f2;
 }
 
+.testCorrectAnswer {
+  background-color: green
+}
+
 /*------ fonts -------*/
 
 @font-face {

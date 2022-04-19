@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom";
 const database = getDatabase(firebaseApp);
 
 const StudentView = () => {
-	const { sesId } = useParams();
-	const sessionRef = ref(database, `data/sessions/${sesId}`);
+	const { seshId } = useParams();
+	const sessionRef = ref(database, `data/sessions/${seshId}`);
 
 	const [question, setQuestion] = useState("");
 	const [answers, setAnswers] = useState([]);
-	const [votesCast, setVotesCast] = useState({});
 	const [hasVoted, setHasVoted] = useState(false);
 	const [correctCount, setCorrectCount] = useState(0);
 	const [answerRevealed, setAnswerRevealed] = useState(false);
+	const [userAnswer, setUserAnswer] = useState("");
 
 	/*
 	When realtime db updates, set the question state
@@ -25,6 +25,7 @@ const StudentView = () => {
 	useEffect(() => {
 		setAnswerRevealed(false);
 		setHasVoted(false);
+		setUserAnswer("");
 
 		onValue(sessionRef, (snapshot) => {
 			const data = snapshot.val();
@@ -36,30 +37,28 @@ const StudentView = () => {
 				answers.push(data.pollData.answers[key]);
 			}
 
-			const votesCast = data.pollData.votesCast;
-
 			const answerRevealed = data.pollData.reveal;
 
 			setQuestion(question);
 			setAnswers(answers);
-			setVotesCast(votesCast);
 			setAnswerRevealed(answerRevealed);
 		});
-	}, [sesId, question]);
+	}, [question]);
+
+	console.log({ userAnswer });
 
 	const vote = ({ answer, isCorrect }, answerKey) => {
 		// Set hasVoted state to disable button and stop multiple votes on same question
 		setHasVoted(true);
 
-		// Increment the answer vote in db
-		set(ref(database, `data/sessions/${sesId}/pollData/answers/${answerKey}`), {
-			answer,
-			isCorrect,
-			votes: increment(1),
+		setUserAnswer(() => {
+			return answer;
 		});
 
-		// Increment the total amount of votes in db
-		set(ref(database, `data/sessions/${sesId}/pollData/votesCast`), {
+		// Increment the answer vote in db
+		set(ref(database, `data/sessions/${seshId}/pollData/answers/${answerKey}`), {
+			answer,
+			isCorrect,
 			votes: increment(1),
 		});
 
@@ -79,7 +78,19 @@ const StudentView = () => {
 					<p>{question}</p>
 
 					{answers.map((answer, index) => {
-						return (
+						return answer.answer === userAnswer ? (
+							<p key={index}>
+								<button
+									className="testCorrectAnswer"
+									disabled={hasVoted}
+									onClick={() => {
+										vote(answer, index);
+									}}
+								>
+									{answer.answer}
+								</button>
+							</p>
+						) : (
 							<p key={index}>
 								<button
 									disabled={hasVoted}
@@ -92,7 +103,6 @@ const StudentView = () => {
 							</p>
 						);
 					})}
-					<p>Total amount of votes: {votesCast.votes}</p>
 					{answerRevealed ? (
 						<div>
 							<p>Correct Answer Total: {correctCount}</p>
