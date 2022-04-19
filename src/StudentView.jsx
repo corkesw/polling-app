@@ -89,6 +89,17 @@ const StudentView = () => {
 					)}
 				</div>
 			) : null}
+			{/* Reset userAnswer and hasVoted for testing only */}
+			<button
+				className="resetButton"
+				value={"reset"}
+				onClick={() => {
+					setUserAnswer("");
+					setHasVoted(false);
+				}}
+			>
+				RESET ANSWER
+			</button>
 		</div>
 	);
 };

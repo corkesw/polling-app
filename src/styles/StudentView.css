@@ -5,7 +5,6 @@ margin: 0;
 
 .voteButton {
     background-color: #9595f4;
-    min-width: 5rem;
     padding: 0.5rem 1rem;
     margin: 0.2rem;
     display: inline-block;
@@ -13,44 +12,46 @@ margin: 0;
     color: #ffffff;
     font-family: "Mark Pro Medium";
     border: none;
+    transition: background-color 1s ease-in ;
 }
+
 
 .selectedVoteButton {
     background-color: #786be4;
-    min-width: 5rem;
     padding: 0.5rem 1rem;
     margin: 0.2rem;
     display: inline-block;
     text-decoration: none;
     color: #ffffff;
     font-family: "Mark Pro Medium";
+    transition: background-color 1s ease-in 0.2s ;
 }
 
 .unselectedVoteButton {
     background-color: #dbdbfc;
-    min-width: 5rem;
     padding: 0.5rem 1rem;
     margin: 0.2rem;
     display: inline-block;
     text-decoration: none;
     color: #ffffff;
     font-family: "Mark Pro Medium";
+    transition: background-color 0.5s ease-in 0.1s;
 }
 
 .correctVoteButton {
-    background-color: #3dd980;
-    min-width: 5rem;
-    padding: 0.5rem 1rem;
+    background-color: #786be4;
+    padding: 1rem 1.5rem;
     margin: 0.2rem;
     display: inline-block;
     text-decoration: none;
     color: #ffffff;
     font-family: "Mark Pro Medium";
     border: none;
+    transition: background-color 1s ease-in 0.2s, height 1s ease-in 0.2s;
 }
 
 .incorrectVoteButton {
-    background-color: #eb1c24;
+    background-color: rgba(235, 28, 36, 0.2);
     min-width: 5rem;
     padding: 0.5rem 1rem;
     margin: 0.2rem;
@@ -59,4 +60,9 @@ margin: 0;
     color: #ffffff;
     font-family: "Mark Pro Medium";
     border: none;
+    transition: background-color 1s ease-in 0.2s;
+}
+
+.resetButton {
+    background-color: rgba(235, 28, 36, 0.2);
 }
