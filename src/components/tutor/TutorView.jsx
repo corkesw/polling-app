@@ -15,6 +15,7 @@ const TutorView = () => {
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
+    // check if user logged in - will prompt to login in if no user
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsUser(true);

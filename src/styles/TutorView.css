@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-button {
+.tutor__button {
   background-color: #786be4;
   padding: 0.5rem 1rem;
   margin: 0rem;
@@ -112,6 +112,10 @@ button {
 
 .ses__button {
   margin-left: 1rem;
+}
+
+.ses__err__true {
+  background-color: red;
 }
 
 .highlight__text {
