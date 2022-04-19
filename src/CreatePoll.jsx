@@ -80,6 +80,7 @@ const CreatePoll = ({ setIsQuestion }) => {
         };
       }
     });
+    console.log(answerObject);
     //set database with current poll data
     const path = `data/sessions/${sessionId}/pollData`;
     set(ref(database, path), {
@@ -117,7 +118,9 @@ const CreatePoll = ({ setIsQuestion }) => {
         {answers.map((_, index) => {
           return (
             <div className="inputLine" key={index}>
-              <label className="input" htmlFor={`answer${index + 1}`}>Answer {index + 1}</label>
+              <label className="input" htmlFor={`answer${index + 1}`}>
+                Answer {index + 1}
+              </label>
 
               <input
                 className="input"

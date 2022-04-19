@@ -10,7 +10,6 @@ const database = getDatabase(firebaseApp);
 const PollAdmin = () => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
-  const [votesCast, setVotesCast] = useState(0);
   const [reveal, setReveal] = useState(false);
 
   const colours = [
@@ -79,7 +78,6 @@ const PollAdmin = () => {
       // if logic required to prevent error when session is cleared and node is deleted
       if (data) {
         setQuestion(data.question);
-        setVotesCast(data.votesCast.votes);
         setReveal(data.reveal);
         setAnswers(() => {
           const answers = [];
@@ -95,12 +93,11 @@ const PollAdmin = () => {
         });
       } else {
         setQuestion("");
-        setVotesCast(0);
         setReveal(false);
         setAnswers([]);
       }
     });
-  }, []);
+  }, [sessionId]);
 
   return (
     <>
@@ -109,7 +106,7 @@ const PollAdmin = () => {
           <h3>Poll Admin</h3>
           <p>{question}</p>
 
-          <PieMaker answers={answers} votesCast={votesCast} />
+          {answers.length ? <PieMaker answers={answers} /> : null}
           <button onClick={revealAnswer}>
             {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
           </button>
