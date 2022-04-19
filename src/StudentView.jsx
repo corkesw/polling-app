@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import firebaseApp from "../src/firebase.js";
 import { getDatabase, ref, onValue, increment, set } from "firebase/database";
 import { useParams } from "react-router-dom";
+import "./styles/StudentView.css";
+import AnswersBeforeReveal from "./components/AnswersBeforeReveal.jsx";
+import AnswersAfterReveal from "./components/AnswersAfterReveal.jsx";
 
 const database = getDatabase(firebaseApp);
 
@@ -15,11 +18,12 @@ const StudentView = () => {
 	const [correctCount, setCorrectCount] = useState(0);
 	const [answerRevealed, setAnswerRevealed] = useState(false);
 	const [userAnswer, setUserAnswer] = useState("");
+	const [correctAnswer, setCorrectAnswer] = useState("");
 
 	/*
 	When realtime db updates, set the question state
 	the state update will trigger the useEffect:
-		- set the different state to reflect the data from new poll in the same session
+		- set the different state to reflect the data from new poll in the same session, including the correct answer 
 		- re-enable the vote buttons so student can vote on new poll
 	*/
 	useEffect(() => {
@@ -34,7 +38,9 @@ const StudentView = () => {
 
 			const answers = [];
 			for (const key in data.pollData.answers) {
-				answers.push(data.pollData.answers[key]);
+				const answerOption = data.pollData.answers[key];
+				answers.push(answerOption);
+				if (answerOption.isCorrect) setCorrectAnswer(answerOption.answer);
 			}
 
 			const answerRevealed = data.pollData.reveal;
@@ -45,12 +51,11 @@ const StudentView = () => {
 		});
 	}, [question]);
 
-	console.log({ userAnswer });
-
 	const vote = ({ answer, isCorrect }, answerKey) => {
 		// Set hasVoted state to disable button and stop multiple votes on same question
 		setHasVoted(true);
 
+		// Set the userAnswer state to the selectedAnswer
 		setUserAnswer(() => {
 			return answer;
 		});
@@ -76,38 +81,12 @@ const StudentView = () => {
 			{question && answers ? (
 				<div>
 					<p>{question}</p>
-
-					{answers.map((answer, index) => {
-						return answer.answer === userAnswer ? (
-							<p key={index}>
-								<button
-									className="testCorrectAnswer"
-									disabled={hasVoted}
-									onClick={() => {
-										vote(answer, index);
-									}}
-								>
-									{answer.answer}
-								</button>
-							</p>
-						) : (
-							<p key={index}>
-								<button
-									disabled={hasVoted}
-									onClick={() => {
-										vote(answer, index);
-									}}
-								>
-									{answer.answer}
-								</button>
-							</p>
-						);
-					})}
-					{answerRevealed ? (
-						<div>
-							<p>Correct Answer Total: {correctCount}</p>
-						</div>
-					) : null}
+					{/* Render different answers component if reveal in db is true or false */}
+					{!answerRevealed ? (
+						<AnswersBeforeReveal answers={answers} userAnswer={userAnswer} answerRevealed={answerRevealed} hasVoted={hasVoted} vote={vote} />
+					) : (
+						<AnswersAfterReveal answers={answers} correctAnswer={correctAnswer} answerRevealed={answerRevealed} hasVoted={hasVoted} vote={vote} />
+					)}
 				</div>
 			) : null}
 		</div>
