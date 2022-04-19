@@ -12,7 +12,6 @@ const auth = getAuth(firebaseApp);
 const TutorView = () => {
   const [sessionId, setSessionId] = useState("");
   const [sessionName, setSessionName] = useState("");
-  const [isQuestion, setIsQuestion] = useState(false);
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
@@ -32,20 +31,11 @@ const TutorView = () => {
           <TutorSessionBar
             sessionId={sessionId}
             setSessionId={setSessionId}
-            setIsQuestion={setIsQuestion}
             setSessionName={setSessionName}
             sessionName={sessionName}
           />
           <Routes>
-            <Route
-              path="/:sessionId"
-              element={
-                <CreatePoll
-                  isQuestion={isQuestion}
-                  setIsQuestion={setIsQuestion}
-                />
-              }
-            ></Route>
+            <Route path="/:sessionId" element={<CreatePoll />}></Route>
             <Route
               path="/:sessionId/admin"
               element={
@@ -53,7 +43,6 @@ const TutorView = () => {
               }
             ></Route>
           </Routes>
-
         </div>
       ) : (
         <Link className="primaryButton" to="/login">

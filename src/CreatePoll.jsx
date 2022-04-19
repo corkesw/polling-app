@@ -86,10 +86,9 @@ const CreatePoll = ({ setIsQuestion }) => {
       answers: answerObject,
       question,
       reveal: false,
-      votesCast: { votes: 0 },
     })
       .then(() => {
-        setIsQuestion(true); // switches tutor's view to poll admin
+        // setIsQuestion(true); // switches tutor's view to poll admin
         setAnswers(() => {
           return [];
         });

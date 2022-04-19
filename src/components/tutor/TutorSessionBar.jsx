@@ -14,7 +14,7 @@ const TutorSessionBar = ({
   sessionName,
 }) => {
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     if (
       localStorage.getItem("sessionId") &&
@@ -29,7 +29,6 @@ const TutorSessionBar = ({
     remove(ref(database, `data/sessions/${sessionId}`))
       .then(() => {
         setSessionId("");
-        setIsQuestion(false);
         setSessionName("");
         localStorage.removeItem("sessionId");
         localStorage.removeItem("sessionName");
