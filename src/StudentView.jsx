@@ -76,11 +76,11 @@ const StudentView = () => {
 	};
 
 	return (
-		<div>
+		<div id="container">
 			<p>Student View!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
 			{question && answers ? (
 				<div>
-					<p>{question}</p>
+					<p id="question">{question}</p>
 					{/* Render different answers component if reveal in db is true or false */}
 					{!answerRevealed ? (
 						<AnswersBeforeReveal answers={answers} userAnswer={userAnswer} answerRevealed={answerRevealed} hasVoted={hasVoted} vote={vote} />
