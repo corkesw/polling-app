@@ -72,6 +72,13 @@ const PollAdmin = () => {
     set(ref(database, path), !reveal);
   };
 
+  const newQuestion = () => {
+    localStorage.removeItem("question");
+    localStorage.removeItem("answers");
+    localStorage.removeItem("correctAnswers");
+    navigate(`/tutor/${sessionId}`);
+  };
+
   useEffect(() => {
     const path = `data/sessions/${sessionId}/pollData`;
     onValue(ref(database, path), (snapshot) => {
@@ -83,7 +90,6 @@ const PollAdmin = () => {
         setAnswers(() => {
           const answers = [];
           for (const key in data.answers) {
-            console.log();
             answers.push({
               name: data.answers[key].answer,
               value: data.answers[key].votes,
@@ -109,7 +115,9 @@ const PollAdmin = () => {
       <button onClick={revealAnswer} className="tutor__button ses__button">
         {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
       </button>
-      <button onClick={()=>{navigate(`/tutor/${sessionId}`)}} className="tutor__button ses__button">New Question</button>
+      <button onClick={newQuestion} className="tutor__button ses__button">
+        New Question
+      </button>
     </>
   );
 };
