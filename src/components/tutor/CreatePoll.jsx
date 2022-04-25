@@ -12,7 +12,9 @@ const CreatePoll = () => {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const { sessionId } = useParams();
   const navigate = useNavigate();
- 
+
+  console.log(answers.filter((answer) => answer !== "").length < 2);
+
   useEffect(() => {
     const localQuestion = localStorage.getItem("question");
     const localAnswers = localStorage.getItem("answers");
@@ -225,7 +227,12 @@ const CreatePoll = () => {
         </div>
         <div className="input__line">
           <span></span>
-          <button className="tutor__button ses__button">Submit</button>
+          <button
+            className="tutor__button ses__button"
+            disabled={answers.filter((answer) => answer !== "").length < 2}
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>
