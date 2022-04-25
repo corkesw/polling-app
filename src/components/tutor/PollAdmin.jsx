@@ -1,6 +1,6 @@
 import { getDatabase, onValue, ref, set } from "firebase/database";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PieMaker from "../PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
@@ -11,6 +11,7 @@ const PollAdmin = () => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
   const [reveal, setReveal] = useState(false);
+  const navigate = useNavigate();
 
   const colours = [
     "#FF6633",
@@ -72,7 +73,6 @@ const PollAdmin = () => {
   };
 
   useEffect(() => {
-    
     const path = `data/sessions/${sessionId}/pollData`;
     onValue(ref(database, path), (snapshot) => {
       const data = snapshot.val();
@@ -102,17 +102,14 @@ const PollAdmin = () => {
 
   return (
     <>
-      <div>
-        <div>
-          <h3>Poll Admin</h3>
-          <p>{question}</p>
+      <h3>Poll Admin</h3>
+      <p>{question}</p>
 
-          {answers.length ? <PieMaker answers={answers} /> : null}
-          <button onClick={revealAnswer} className="tutor__button ses__button">
-            {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
-          </button>
-        </div>
-      </div>
+      {answers.length ? <PieMaker answers={answers} /> : null}
+      <button onClick={revealAnswer} className="tutor__button ses__button">
+        {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
+      </button>
+      <button onClick={()=>{navigate(`/tutor/${sessionId}`)}} className="tutor__button ses__button">New Question</button>
     </>
   );
 };

@@ -12,7 +12,7 @@ const CreatePoll = () => {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const { sessionId } = useParams();
   const navigate = useNavigate();
-console.log(correctAnswers)
+  console.log(correctAnswers);
   // controlled component for question
   const questionChange = (e) => {
     setQuestion(e.target.value);
@@ -82,7 +82,7 @@ console.log(correctAnswers)
         };
       }
     });
- 
+
     //set database with current poll data
     const path = `data/sessions/${sessionId}/pollData`;
     set(ref(database, path), {
@@ -102,7 +102,13 @@ console.log(correctAnswers)
   return (
     <div className="content__box">
       <h3 className="heading">Create Poll</h3>
-      <form className="poll__form" onSubmit={handleSubmit}>
+      <form
+        className="poll__form"
+        onSubmit={handleSubmit}
+        onKeyPress={(e) => {
+          e.key === "Enter" && e.preventDefault();
+        }}
+      >
         {}
         <div className="question">
           <label className="input" htmlFor="question">
