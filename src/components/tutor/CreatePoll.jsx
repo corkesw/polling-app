@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 import "../../styles/TutorView.css";
@@ -12,16 +12,37 @@ const CreatePoll = () => {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const { sessionId } = useParams();
   const navigate = useNavigate();
-  console.log(correctAnswers);
+ 
+  useEffect(() => {
+    const localQuestion = localStorage.getItem("question");
+    const localAnswers = localStorage.getItem("answers");
+    const localCorrectAnswers = localStorage.getItem("correctAnswers");
+
+    if (localQuestion) {
+      setQuestion(localQuestion);
+    }
+    if (localAnswers) {
+      const parsedLocalAnswers = JSON.parse(localStorage.getItem("answers"));
+      setAnswers(parsedLocalAnswers);
+    }
+    if (localCorrectAnswers) {
+      const parsedLocalCorrectAnswers = JSON.parse(localCorrectAnswers);
+      setCorrectAnswers(parsedLocalCorrectAnswers);
+    }
+  }, []);
+
   // controlled component for question
   const questionChange = (e) => {
     setQuestion(e.target.value);
+    localStorage.setItem("question", e.target.value);
   };
   // controlled component to update answer array
   const answerChange = (e, index) => {
     setAnswers((currentAnswers) => {
       const updatedAnswers = [...currentAnswers];
       updatedAnswers[index] = e.target.value;
+      const localAnswers = JSON.stringify(updatedAnswers);
+      localStorage.setItem("answers", localAnswers);
       return updatedAnswers;
     });
   };
@@ -30,6 +51,8 @@ const CreatePoll = () => {
     setAnswers((currentAnswers) => {
       const updatedAnswers = [...currentAnswers];
       updatedAnswers.push("");
+      const localAnswers = JSON.stringify(updatedAnswers);
+      localStorage.setItem("answers", localAnswers);
       return updatedAnswers;
     });
   };
@@ -40,6 +63,8 @@ const CreatePoll = () => {
       const updatedAnswers = currentAnswers.filter((answer, i) => {
         return index !== i;
       });
+      const localAnswers = JSON.stringify(updatedAnswers);
+      localStorage.setItem("answers", localAnswers);
       return updatedAnswers;
     });
     // updates the correct answers array to remove and renumber any indices as required
@@ -47,10 +72,13 @@ const CreatePoll = () => {
       const removedCorrect = currentAnswers.filter((item) => {
         return item !== index;
       });
-      return removedCorrect.map((item) => {
+      const updatedCorrectAnswers = removedCorrect.map((item) => {
         if (item < index) return item;
         else return item - 1;
       });
+      const localCorrectAnswers = JSON.stringify(updatedCorrectAnswers);
+      localStorage.setItem("correctAnswers", localCorrectAnswers);
+      return updatedCorrectAnswers;
     });
   };
   // updates the correct answers array if items are checked or unchecked
@@ -59,14 +87,27 @@ const CreatePoll = () => {
       setCorrectAnswers((currentCorrectAnswers) => {
         // this code allows for multiple correct answers beyond MVP
         // return [...currentCorrectAnswers, index];
-        return [index];
+        const updatedCorrectAnswers = [index];
+        const localCorrectAnswers = JSON.stringify(updatedCorrectAnswers);
+        localStorage.setItem("correctAnswers", localCorrectAnswers);
+        return updatedCorrectAnswers;
       });
     }
     if (!e.target.checked) {
       setCorrectAnswers((currentCorrectAnswers) => {
-        return currentCorrectAnswers.filter((item) => item !== index);
+        const updatedCorrectAnswers = currentCorrectAnswers.filter(
+          (item) => item !== index
+        );
+        const localCorrectAnswers = JSON.stringify(updatedCorrectAnswers);
+        localStorage.setItem("correctAnswers", localCorrectAnswers);
+        return updatedCorrectAnswers;
       });
     }
+    // console.log(correctAnswers, '$$$$$$')
+    // const localCorrectAnswers = JSON.stringify(correctAnswers);
+
+    // localStorage.setItem("correctAnswers", localCorrectAnswers);
+    // console.log(localStorage.getItem("correctAnswers"), "<<<<<<<<<<<<");
   };
 
   const handleSubmit = (e) => {
@@ -120,6 +161,7 @@ const CreatePoll = () => {
             onChange={questionChange}
             type="text"
             id="question"
+            value={question}
           />
         </div>
         {answers.map((_, index) => {
@@ -154,7 +196,7 @@ const CreatePoll = () => {
                   type="checkbox"
                   checked={correctAnswers.includes(index)}
                 ></input>
-                <div class="checkmark"></div>
+                <div className="checkmark"></div>
               </label>
 
               <button
