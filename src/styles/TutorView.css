@@ -15,6 +15,15 @@
   width: 350px;
 }
 
+.tutor__button:disabled {
+  background-color: #bdb9df;
+}
+
+.tutor__button:hover {
+  background-color: #4635e2;
+
+}
+
 
 .delete__button {
   display: flex;
@@ -110,6 +119,10 @@
 .input {
   padding: 0.5rem 1rem;
   margin: 0rem 1rem;
+}
+
+.input:focus {
+  outline-color: #786be4;
 }
 
 .input:focus {
