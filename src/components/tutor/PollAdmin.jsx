@@ -18,7 +18,6 @@ const PollAdmin = () => {
     "#FF6633",
     "#FFB399",
     "#FF33FF",
-    "#FFFF99",
     "#00B3E6",
     "#E6B333",
     "#3366E6",
@@ -81,12 +80,15 @@ const PollAdmin = () => {
   const reuseQuestion = () => {
     const path = `data/sessions/${sessionId}/pollData/`;
     get(ref(database, `${path}/answers`)).then((snapshot) => {
+      // grab the valid indices of the questions
       const answerIndices = Object.keys(snapshot.val());
       answerIndices.forEach((index) => {
+        // reset each vote to 0
         set(ref(database, `${path}/answers/${index}/votes`), 0);
       });
     });
-    set(ref(database, `${path}/reveal`), false)
+    // reset reveal to false
+    set(ref(database, `${path}/reveal`), false);
   };
 
   useEffect(() => {
