@@ -1,86 +1,89 @@
 * {
-padding: 0;
-margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .voteButton {
-    background-color: #786be4;
-    padding: 0.5em 1em;
-    margin: 0.2rem;
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Mark Pro Medium";
-    font-size: 1.2rem;
-    letter-spacing: 0.35px;
-    border: none;
-    transition: background-color 1s ease-in ;
+  width: 350px;
+  background-color: #786be4;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  opacity: 1;
+  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
 }
 
-
 .selectedVoteButton {
-    background-color: #786be4;
-    padding: 0.5em 1em;
-    margin: 0.2rem;
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Mark Pro Medium";
-    font-size: 1.2rem;
-    letter-spacing: 0.35px;
-    transition: background-color 1s ease-in ;
+  width: 350px;
+  background-color: #786be4;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  transition: background-color 1s ease-in;
 }
 
 .unselectedVoteButton {
-    background-color: #dbdbfc;
-    padding: 0.5em 1em;
-    margin: 0.2rem;
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Mark Pro Medium";
-    font-size: 1.2rem;
-    letter-spacing: 0.35px;
-    transition: background-color 0.5s ease-in 0.1s;
+  width: 350px;
+  background-color: #888888;
+  opacity: 0.4;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
 }
 
 .correctVoteButton {
-    background-color: #3dd980;
-    padding: 0.5em 1em;
-    margin: 0.2rem;
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Mark Pro Medium";
-    font-size: 1.2rem;
-    letter-spacing: 0.35px;
-    border: none;
-    transition: background-color 1s ease-in 0.2s, height 1s ease-in 0.2s;
+  width: 350px;
+  background-color: #3dd980;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  transition: background-color 1s ease-in 0.2s, height 1s ease-in 0.2s;
 }
 
 .incorrectVoteButton {
-    background-color: #dbdbfc;
-    min-width: 5rem;
-    padding: 0.5em 1em;
-    margin: 0.2rem;
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "Mark Pro Medium";
-    font-size: 1.2rem;
-    letter-spacing: 0.35px;
-    border: none;
-    transition: background-color 1s ease-in 0.2s;
+  width: 350px;
+  background-color: #dbdbfc;
+  min-width: 5rem;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  transition: background-color 1s ease-in 0.2s;
 }
 
 .resetButton {
-    background-color: rgba(235, 28, 36, 0.65);
+  background-color: rgba(235, 28, 36, 0.65);
 }
 
 #container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
