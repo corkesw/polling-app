@@ -1,6 +1,6 @@
-import firebaseApp from "../src/firebase.js";
+import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, remove, set } from "firebase/database";
-import "./styles/TutorView.css";
+import "../../styles/TutorView.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -14,7 +14,7 @@ const TutorSessionBar = ({
   sessionName,
 }) => {
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     if (
       localStorage.getItem("sessionId") &&
@@ -29,7 +29,6 @@ const TutorSessionBar = ({
     remove(ref(database, `data/sessions/${sessionId}`))
       .then(() => {
         setSessionId("");
-        setIsQuestion(false);
         setSessionName("");
         localStorage.removeItem("sessionId");
         localStorage.removeItem("sessionName");
@@ -69,7 +68,7 @@ const TutorSessionBar = ({
   return (
     <div>
       {!sessionId ? (
-        <form className="sessionBox" onSubmit={handleSubmit}>
+        <form className="session__box" onSubmit={handleSubmit}>
           <label className="input" htmlFor="sesName">
             Session Name:{" "}
           </label>
@@ -82,19 +81,19 @@ const TutorSessionBar = ({
             id="sesName"
             type="text"
           ></input>
-          <button className="sesButton">Start session</button>
+          <button className="ses__button tutor__button">Start session</button>
         </form>
       ) : (
-        <div className="sessionBox">
+        <div className="session__box">
           <p>
             {sessionName} :{" "}
-            <span className="highlightText">
+            <span className="highlight__text">
               localhost:3000/poll/{sessionId}
             </span>
-            <button onClick={handleCopyClick} className="sesButton">
+            <button onClick={handleCopyClick} className="ses__button tutor__button">
               Copy Link
             </button>
-            <button className="sesButton" type="button" onClick={clearSession}>
+            <button className="ses__button tutor__button" type="button" onClick={clearSession}>
               Clear session
             </button>
           </p>
