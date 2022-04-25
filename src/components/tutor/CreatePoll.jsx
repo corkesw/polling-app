@@ -12,7 +12,7 @@ const CreatePoll = ({ setIsQuestion }) => {
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const { sessionId } = useParams();
   const navigate = useNavigate();
-
+console.log(correctAnswers)
   // controlled component for question
   const questionChange = (e) => {
     setQuestion(e.target.value);
@@ -57,7 +57,9 @@ const CreatePoll = ({ setIsQuestion }) => {
   const handleCheckBox = (e, index) => {
     if (e.target.checked) {
       setCorrectAnswers((currentCorrectAnswers) => {
-        return [...currentCorrectAnswers, index];
+        // this code allows for multiple correct answers beyond MVP
+        // return [...currentCorrectAnswers, index];
+        return [index];
       });
     }
     if (!e.target.checked) {
@@ -80,7 +82,7 @@ const CreatePoll = ({ setIsQuestion }) => {
         };
       }
     });
-    console.log(answerObject);
+ 
     //set database with current poll data
     const path = `data/sessions/${sessionId}/pollData`;
     set(ref(database, path), {
@@ -123,7 +125,7 @@ const CreatePoll = ({ setIsQuestion }) => {
               </label>
 
               <input
-                className="input"
+                className="input answer__box"
                 onKeyDown={(e) => {
                   if (e.key === "Tab" && index === answers.length - 1) {
                     addAnswer();
@@ -151,7 +153,7 @@ const CreatePoll = ({ setIsQuestion }) => {
               </label>
 
               <button
-                className="delete__button"
+                className="delete__button tutor__button"
                 onClick={() => {
                   removeAnswer(index);
                 }}
@@ -169,13 +171,14 @@ const CreatePoll = ({ setIsQuestion }) => {
               addAnswer();
             }}
             type="button"
+            className="tutor__button ses__button"
           >
             Add answer
           </button>
         </div>
         <div className="input__line">
           <span></span>
-          <button>Submit</button>
+          <button className="tutor__button ses__button">Submit</button>
         </div>
       </form>
     </div>
