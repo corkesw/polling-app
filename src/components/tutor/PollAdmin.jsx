@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, set, get } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PieMaker from "../PieMaker";
@@ -74,8 +74,19 @@ const PollAdmin = () => {
   };
 
   const newQuestion = () => {
-    wipePoll()
+    wipePoll();
     navigate(`/tutor/${sessionId}`);
+  };
+
+  const reuseQuestion = () => {
+    const path = `data/sessions/${sessionId}/pollData/`;
+    get(ref(database, `${path}/answers`)).then((snapshot) => {
+      const answerIndices = Object.keys(snapshot.val());
+      answerIndices.forEach((index) => {
+        set(ref(database, `${path}/answers/${index}/votes`), 0);
+      });
+    });
+    set(ref(database, `${path}/reveal`), false)
   };
 
   useEffect(() => {
@@ -111,11 +122,18 @@ const PollAdmin = () => {
       <p>{question}</p>
 
       {answers.length ? <PieMaker answers={answers} /> : null}
-      <button onClick={revealAnswer} className="tutor__button ses__button">
-        {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
+      <button
+        onClick={revealAnswer}
+        className="tutor__button ses__button"
+        disabled={reveal}
+      >
+        {!reveal ? <span>Reveal Answer</span> : <span>Answer revealed</span>}
       </button>
       <button onClick={newQuestion} className="tutor__button ses__button">
         New Question
+      </button>
+      <button onClick={reuseQuestion} className="tutor__button ses__button">
+        Reuse Question
       </button>
     </>
   );
