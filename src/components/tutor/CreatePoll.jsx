@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const database = getDatabase(firebaseApp);
 
-const CreatePoll = ({ setIsQuestion }) => {
+const CreatePoll = () => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
@@ -91,7 +91,6 @@ console.log(correctAnswers)
       reveal: false,
     })
       .then(() => {
-        // setIsQuestion(true); // switches tutor's view to poll admin
         setAnswers(() => {
           return [];
         });

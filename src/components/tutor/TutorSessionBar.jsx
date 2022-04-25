@@ -9,7 +9,6 @@ const database = getDatabase(firebaseApp);
 const TutorSessionBar = ({
   sessionId,
   setSessionId,
-  setIsQuestion,
   setSessionName,
   sessionName,
 }) => {
