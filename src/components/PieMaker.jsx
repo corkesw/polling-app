@@ -17,7 +17,7 @@ const PieMaker = ({ answers }) => {
    const votesCast = answers.reduce((previousAnswer, currentAnswer) => {
       return previousAnswer + currentAnswer.value;
     }, 0);
-    return `${entry.name.slice(0, 25)} ${(
+    return `${(
       (entry.value / votesCast) *
       100
     ).toFixed(1)}%`;

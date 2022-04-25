@@ -108,7 +108,7 @@ const PollAdmin = () => {
           <p>{question}</p>
 
           {answers.length ? <PieMaker answers={answers} /> : null}
-          <button onClick={revealAnswer}>
+          <button onClick={revealAnswer} className="tutor__button ses__button">
             {reveal ? <span>Hide Answer</span> : <span>Reveal Answer</span>}{" "}
           </button>
         </div>
