@@ -26,14 +26,12 @@ const PieMaker = ({ answers }) => {
   const formatter = (value, entry, index) => {
     const { color } = entry;
     const { payload } = entry;
-    console.log(payload.value);
     return (
       <div className="pie__legend">
         <span style={{ color }}>{value}</span>
         <span> {payload.value}</span>
         {index === answers.length - 1 ? (
           <>
-
             <span className="total__count">Total</span>
             <span className="total__count">{votesCast}</span>
           </>
@@ -41,6 +39,7 @@ const PieMaker = ({ answers }) => {
       </div>
     );
   };
+
 
   return (
     <>
@@ -50,11 +49,12 @@ const PieMaker = ({ answers }) => {
             <PieChart width={1000} height={500}>
               <Legend
                 iconType="square"
-                iconSize="25"
+                iconSize="0"
                 formatter={formatter}
                 align="right"
                 layout="vertical"
                 verticalAlign="middle"
+                width="100px"
               />
               <Pie
                 data={answers}
