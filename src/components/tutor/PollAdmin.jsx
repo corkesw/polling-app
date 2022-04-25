@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import PieMaker from "../PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
+import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);
 
@@ -73,9 +74,7 @@ const PollAdmin = () => {
   };
 
   const newQuestion = () => {
-    localStorage.removeItem("question");
-    localStorage.removeItem("answers");
-    localStorage.removeItem("correctAnswers");
+    wipePoll()
     navigate(`/tutor/${sessionId}`);
   };
 

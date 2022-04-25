@@ -3,8 +3,11 @@ import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 import "../../styles/TutorView.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);
+
+console.log(wipePoll);
 
 const CreatePoll = () => {
   const [question, setQuestion] = useState("");
@@ -105,11 +108,6 @@ const CreatePoll = () => {
         return updatedCorrectAnswers;
       });
     }
-    // console.log(correctAnswers, '$$$$$$')
-    // const localCorrectAnswers = JSON.stringify(correctAnswers);
-
-    // localStorage.setItem("correctAnswers", localCorrectAnswers);
-    // console.log(localStorage.getItem("correctAnswers"), "<<<<<<<<<<<<");
   };
 
   const handleSubmit = (e) => {
@@ -215,6 +213,19 @@ const CreatePoll = () => {
         })}
         <div className="input__line">
           <span></span>
+          <button
+            onClick={() => {
+              console.log("hi");
+              setAnswers(['','']);
+              setQuestion("");
+              setCorrectAnswers([]);
+              wipePoll()
+            }}
+            type="button"
+            className="tutor__button ses__button"
+          >
+            Clear Form
+          </button>
           <button
             onClick={() => {
               addAnswer();
