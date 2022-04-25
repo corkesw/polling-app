@@ -118,17 +118,17 @@ h3 {
 
 @font-face {
   font-family: "Mark Pro";
-  src: local("Mark Pro"), url("./fonts/Mark Pro.ttf") format("truetype");
+  src: local("Mark Pro"), url("../fonts/Mark Pro.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Mark Pro Bold";
   src: local("Mark Pro Bold"),
-    url("./fonts/Mark Pro Bold.ttf") format("truetype");
+    url("../fonts/Mark Pro Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Mark Pro Medium";
   src: local("Mark Pro Medium"),
-    url("./fonts/Mark Pro Medium.ttf") format("truetype");
+    url("../fonts/Mark Pro Medium.ttf") format("truetype");
 }

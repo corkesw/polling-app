@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import StudentView from "./StudentView";
-import TutorView from "./TutorView";
+import TutorView from "./components/tutor/TutorView";
 import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminView from "./AdminView";
