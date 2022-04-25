@@ -81,7 +81,7 @@ const TutorSessionBar = ({
             id="sesName"
             type="text"
           ></input>
-          <button className="ses__button">Start session</button>
+          <button className="ses__button tutor__button">Start session</button>
         </form>
       ) : (
         <div className="session__box">
@@ -90,10 +90,10 @@ const TutorSessionBar = ({
             <span className="highlight__text">
               localhost:3000/poll/{sessionId}
             </span>
-            <button onClick={handleCopyClick} className="ses__button">
+            <button onClick={handleCopyClick} className="ses__button tutor__button">
               Copy Link
             </button>
-            <button className="ses__button" type="button" onClick={clearSession}>
+            <button className="ses__button tutor__button" type="button" onClick={clearSession}>
               Clear session
             </button>
           </p>

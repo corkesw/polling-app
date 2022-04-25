@@ -72,6 +72,7 @@ const PollAdmin = () => {
   };
 
   useEffect(() => {
+    
     const path = `data/sessions/${sessionId}/pollData`;
     onValue(ref(database, path), (snapshot) => {
       const data = snapshot.val();

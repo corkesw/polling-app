@@ -110,6 +110,10 @@
   margin: 0rem 1rem;
 }
 
+.input:focus {
+  color: black
+}
+
 .ses__button {
   margin-left: 1rem;
 }
