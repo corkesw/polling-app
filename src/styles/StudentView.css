@@ -16,6 +16,7 @@
   letter-spacing: 0.35px;
   opacity: 1;
   transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
+  cursor: pointer;
 }
 
 .selectedVoteButton {
@@ -30,6 +31,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   transition: background-color 1s ease-in;
+  cursor: pointer;
 }
 
 .unselectedVoteButton {
@@ -45,6 +47,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
+  cursor: pointer;
 }
 
 .correctVoteButton {
@@ -58,8 +61,29 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 1s ease-in 0.2s, height 1s ease-in 0.2s;
+  transition: background-color 0.4s ease-in 0.4s;
+  cursor: pointer;
 }
+
+.showCorrectAnswerTransition-appear {
+  background-color: #786be4;
+}
+
+.showCorrectAnswerTransition-appear.showCorrectAnswerTransition-appear-active {
+  background-color: #3dd980;
+  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+}
+
+/* .showIncorrectAnswerTransition-appear {
+  opacity: 1;
+  background-color: #786be4;
+}
+
+.showIncorrectAnswerTransition-appear.showIncorrectAnswerTransition-appear-active {
+  opacity: 0.4;
+  background-color: #888888;
+  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+} */
 
 .incorrectVoteButton {
   width: 350px;
@@ -74,10 +98,12 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   transition: background-color 1s ease-in 0.2s;
+  cursor: pointer;
 }
 
 .resetButton {
   background-color: rgba(235, 28, 36, 0.65);
+  cursor: pointer;
 }
 
 #container {
