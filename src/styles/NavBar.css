@@ -9,12 +9,11 @@ nav {
 .nav-link,
 .nav-link:visited {
   text-decoration: none;
-  color: #5ed9cd;
+  color: #786be4;
   font-family: "Mark Pro Medium";
   margin: 0rem 1rem;
 }
 
-.nav-link:hover,
-:focus {
-  color: #7deaea;
+.nav-link:hover :focus {
+  color: #9595f4;
 }
