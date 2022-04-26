@@ -7,27 +7,22 @@ import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);
 
-
-
-const CreatePoll = ({sessionId}) => {
+const CreatePoll = ({ sessionId }) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
-  const [correctAnswers, setCorrectAnswers] = useState([]);
-
+  const [correctAnswers, setCorrectAnswers] = useState([]); // array to allow for multiple correct answers beyond MVP
   const navigate = useNavigate();
-
-
 
   useEffect(() => {
     const localQuestion = localStorage.getItem("question");
     const localAnswers = localStorage.getItem("answers");
     const localCorrectAnswers = localStorage.getItem("correctAnswers");
-
+    // check local storage for question data if navigating back from admin or page refresh
     if (localQuestion) {
       setQuestion(localQuestion);
     }
     if (localAnswers) {
-      const parsedLocalAnswers = JSON.parse(localStorage.getItem("answers"));
+      const parsedLocalAnswers = JSON.parse(localAnswers);
       setAnswers(parsedLocalAnswers);
     }
     if (localCorrectAnswers) {
@@ -36,11 +31,12 @@ const CreatePoll = ({sessionId}) => {
     }
   }, []);
 
-  // controlled component for question
+  // controlled component for question input
   const questionChange = (e) => {
     setQuestion(e.target.value);
     localStorage.setItem("question", e.target.value);
   };
+
   // controlled component to update answer array
   const answerChange = (e, index) => {
     setAnswers((currentAnswers) => {
@@ -51,7 +47,8 @@ const CreatePoll = ({sessionId}) => {
       return updatedAnswers;
     });
   };
-  // adds an answer field if last answer field loses focus or if 'add' button is clicked
+
+  // adds an answer field if last answer field is tabbed away from or if 'add' button is clicked
   const addAnswer = (index) => {
     setAnswers((currentAnswers) => {
       const updatedAnswers = [...currentAnswers];
@@ -86,12 +83,11 @@ const CreatePoll = ({sessionId}) => {
       return updatedCorrectAnswers;
     });
   };
+
   // updates the correct answers array if items are checked or unchecked
   const handleCheckBox = (e, index) => {
     if (e.target.checked) {
-      setCorrectAnswers((currentCorrectAnswers) => {
-        // this code allows for multiple correct answers beyond MVP
-        // return [...currentCorrectAnswers, index];
+      setCorrectAnswers(() => {
         const updatedCorrectAnswers = [index];
         const localCorrectAnswers = JSON.stringify(updatedCorrectAnswers);
         localStorage.setItem("correctAnswers", localCorrectAnswers);
@@ -130,13 +126,13 @@ const CreatePoll = ({sessionId}) => {
       answers: answerObject,
       question,
       reveal: false,
-      question_id: "_" + Math.random().toString(36).slice(2, 9)
+      question_id: "_" + Math.random().toString(36).slice(2, 9),
     })
       .then(() => {
         setAnswers(() => {
           return [];
         });
-        
+
         navigate(`/tutor/${sessionId}/admin`);
       })
       .catch((err) => console.log(err));
@@ -218,10 +214,10 @@ const CreatePoll = ({sessionId}) => {
           <button
             onClick={() => {
               console.log("hi");
-              setAnswers(['','']);
+              setAnswers(["", ""]);
               setQuestion("");
               setCorrectAnswers([]);
-              wipePoll()
+              wipePoll();
             }}
             type="button"
             className="tutor__button ses__button"
