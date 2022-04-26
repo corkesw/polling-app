@@ -5,7 +5,8 @@
 
 .pie__legend {
     display:grid;
-    grid-template-columns: 150px 20px ;
+    grid-template-columns: 150px 20px;
+    font-size: 1.2rem;
 }
 
 .total__count {

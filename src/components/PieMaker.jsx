@@ -17,10 +17,7 @@ const PieMaker = ({ answers }) => {
       return;
     }
 
-    return `${entry.name.slice(0, 25)} ${(
-      (entry.value / votesCast) *
-      100
-    ).toFixed(1)}%`;
+    return `${((entry.value / votesCast) * 100).toFixed(1)}%`;
   };
 
   const formatter = (value, entry, index) => {
@@ -40,13 +37,12 @@ const PieMaker = ({ answers }) => {
     );
   };
 
-
   return (
     <>
       <div className="pie__chart">
         {hasVotes ? (
           <>
-            <PieChart width={1000} height={500}>
+            <PieChart width={800} height={450}>
               <Legend
                 iconType="square"
                 iconSize="0"
