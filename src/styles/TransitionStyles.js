@@ -62,7 +62,7 @@ const incorrectAnswerSelectedDefaultStyles = {
 
 const incorrectAnswerSelectedStyles = {
   entering: { opacity: "1", backgroundColor: "#786be4" },
-  entered: { opacity: "0.4", backgroundColor: "#888888" },
+  entered: { opacity: "0.4", backgroundColor: "red" },
 }
 
 //if user did not select and answer is inCorrect
