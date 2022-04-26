@@ -78,17 +78,8 @@ const PollAdmin = () => {
   };
 
   const reuseQuestion = () => {
-    const path = `data/sessions/${sessionId}/pollData/`;
-    get(ref(database, `${path}/answers`)).then((snapshot) => {
-      // grab the valid indices of the questions
-      const answerIndices = Object.keys(snapshot.val());
-      answerIndices.forEach((index) => {
-        // reset each vote to 0
-        set(ref(database, `${path}/answers/${index}/votes`), 0);
-      });
-    });
-    // reset reveal to false
-    set(ref(database, `${path}/reveal`), false);
+    setReveal(false)
+    navigate(`/tutor/${sessionId}`)
   };
 
   useEffect(() => {
@@ -124,6 +115,9 @@ const PollAdmin = () => {
       <p>{question}</p>
 
       {answers.length ? <PieMaker answers={answers} /> : null}
+      <button onClick={reuseQuestion} className="tutor__button ses__button">
+        Back
+      </button>
       <button
         onClick={revealAnswer}
         className="tutor__button ses__button"
@@ -134,9 +128,7 @@ const PollAdmin = () => {
       <button onClick={newQuestion} className="tutor__button ses__button">
         New Question
       </button>
-      <button onClick={reuseQuestion} className="tutor__button ses__button">
-        Reuse Question
-      </button>
+     
     </>
   );
 };

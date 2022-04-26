@@ -130,11 +130,13 @@ const CreatePoll = () => {
       answers: answerObject,
       question,
       reveal: false,
+      question_id: "_" + Math.random().toString(36).slice(2, 9)
     })
       .then(() => {
         setAnswers(() => {
           return [];
         });
+        
         navigate(`/tutor/${sessionId}/admin`);
       })
       .catch((err) => console.log(err));
