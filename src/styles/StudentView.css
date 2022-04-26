@@ -15,7 +15,7 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   opacity: 1;
-  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
+  /* transition: background-color 0.4s ease-in, opacity 0.4s ease-in; */
   cursor: pointer;
 }
 
@@ -30,7 +30,7 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 1s ease-in;
+  /* transition: background-color 1s ease-in; */
   cursor: pointer;
 }
 
@@ -46,8 +46,17 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
   cursor: pointer;
+}
+
+/*IF USER SELECTS CORRECT ANSWER*/
+.userCorrect-enter {
+  background-color: #786be4;
+}
+
+.userCorrect-enter-active {
+  background-color: #3dd980;
+  transition: background-color 2s ease-in;
 }
 
 .correctVoteButton {
@@ -61,63 +70,43 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 2s ease-in;
   cursor: pointer;
 }
-/*IF USER SELECTS CORRECT ANSWER*/
-.showCorrectAnswerTransition-appear {
-  opacity: 1;
-  background-color: #786be4;
-}
 
-.showCorrectAnswerTransition-appear.showCorrectAnswerTransition-appear-active {
-  background-color: #3dd980;
-  opacity: 1;
-  transition: opacity 1.5s ease-in, background-color 1.5s ease-in;
-}
-
-/*IF USER SELECTS CORRECT ANSWER*/
-/* .showCorrectAnswerTransition-enter {
-  background-color: #786be4;
-}
-
-.showCorrectAnswerTransition-enter.showCorrectAnswerTransition-enter-active {
-  background-color: #3dd980;
-  transition: opacity 1.5s ease-in, background-color 1.5s;
-} */
 /*TRANSITION FOR CORRECT ANSWER BUT NOT CHOSEN*/
-.correctNotChosenAnswerTransition-appear {
+.userWrongButAnswerCorrect-enter {
   opacity: 0.4;
   background-color: #888888;
 }
 
-.correctNotChosenAnswerTransition-appear.showIncorrectAnswerTransition-appear-active {
+.userWrongButAnswerCorrect-enter-active {
   opacity: 1;
   background-color: #3dd980;
-  transition: opacity 1.5s ease-in, background-color 1.5s ease-in;
+  transition: background-color 2s ease-in, opacity 2s ease-in;
 }
+
 /*TRANSITION FOR INCORRECT ANSWER BUT CHOSEN*/
-.showIncorrectAnswerButChosenTransition-appear {
+.userIncorrect-enter {
   opacity: 1;
   background-color: #786be4;
 }
 
-.showIncorrectAnswerButChosenTransition-appear.showIncorrectAnswerTransition-appear-active {
-  opacity: 0.4;
+.userIncorrect-enter-active {
   background-color: #888888;
-  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+  opacity: 0.4;
+  transition: background-color 2s ease-in, opacity 2s ease-in;
 }
 
 /*TRANSITION FOR INCORRECT ANSWER BUT NOT CHOSEN*/
-.showIncorrectAnswerNotChosenTransition-appear {
-  opacity: 0.4;
+.userIgnoredAndWrong-enter {
   background-color: #888888;
+  opacity: 0.4;
 }
 
-.showIncorrectAnswerNotChosenTransition-appear.showIncorrectAnswerTransition-appear-active {
-  opacity: 0.4;
+.userIgnoredAndWrong-enter-active {
   background-color: #888888;
-  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+  opacity: 0.4;
+  transition: background-color 2s ease-in, opacity 2s ease-in;
 }
 
 .incorrectVoteButton {

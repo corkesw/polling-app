@@ -1,37 +1,104 @@
 import React, { useEffect, useState } from "react"
-import { CSSTransitionGroup, TransitionGroup } from "react-transition-group"
+
+import { Transition } from "react-transition-group"
+
+import {
+  userCorrectStyles,
+  correctAnswerDefaultStyles,
+  correctAnswerNotSelectedDefaultStyles,
+  correctAnswerNotSelectedStyles,
+  incorrectAnswerSelectedDefaultStyles,
+  incorrectAnswerSelectedStyles,
+  incorrectAnswerNotSelectedDefaultStyles,
+  incorrectAnswerNotSelectedStyles,
+} from "../styles/TransitionStyles"
 
 const AnswersAfterReveal = ({ answers, correctAnswer }) => {
   const [userAnswer, setUserAnswer] = useState("")
-
-  useEffect(() => {
-    const fetchedUserAnswer = localStorage.getItem("userAnswer")
-    if (fetchedUserAnswer) {
-      setUserAnswer(fetchedUserAnswer)
-    }
-  }, [])
-
-  // console.log(userAnswer, "<-- user answer")
+  const [receivedAnswer, setReceivedAnswer] = useState(false)
 
   // Conditional styling to display the correct answer after the tutor has set reveal to be true
+
+  useEffect(() => {
+    const something = localStorage.getItem("userAnswer")
+
+    setUserAnswer(something)
+  }, [])
+
+  console.log(receivedAnswer, "<-- received answer")
   return (
-    <TransitionGroup>
+    <>
       {answers.map((answerData, index) => {
         //if answer is the correct one
-        return answerData.answer === correctAnswer
-          ? //if its also the users answer
-            answerData.answer === userAnswer
-            ? //purple to green
-              console.log("user correct")
-            : // if not users answer - grey to green
-              console.log("im correct - user silly")
-              //if incorrect answer and user selected it
-          : answerData.answer === userAnswer
-          ? console.log("user selected wrong")
+        return answerData.answer === correctAnswer ? (
+          //if its also the users answer
+          answerData.answer === userAnswer ? (
+            //purple to green
+            <Transition in={receivedAnswer} key={index} timeout={1000}>
+              {(state) => (
+                <button
+                  style={{
+                    ...correctAnswerDefaultStyles,
+                    ...userCorrectStyles[state],
+                  }}
+                >
+                  {answerData.answer}
+                </button>
+              )}
+            </Transition>
+          ) : (
+            // if not users answer - grey to green
+            <Transition in={receivedAnswer} key={index} timeout={1000}>
+              {(state) => (
+                <button
+                  style={{
+                    ...correctAnswerNotSelectedDefaultStyles,
+                    ...correctAnswerNotSelectedStyles[state],
+                  }}
+                >
+                  {answerData.answer}
+                </button>
+              )}
+            </Transition>
+          )
+        ) : //if incorrect answer and user selected it
+        answerData.answer === userAnswer ? (
+          <Transition in={receivedAnswer} key={index} timeout={1000}>
+            {(state) => (
+              <button
+                style={{
+                  ...incorrectAnswerSelectedDefaultStyles,
+                  ...incorrectAnswerSelectedStyles[state],
+                }}
+              >
+                {answerData.answer}
+              </button>
+            )}
+          </Transition>
+        ) : (
           //if incorrect answer and ignored
-          : console.log("wasnt picked and is wrong")
+          <Transition in={receivedAnswer} key={index} timeout={1000}>
+            {(state) => (
+              <button
+                style={{
+                  ...incorrectAnswerNotSelectedDefaultStyles,
+                  ...incorrectAnswerNotSelectedStyles[state],
+                }}
+              >
+                {answerData.answer}
+              </button>
+            )}
+          </Transition>
+        )
       })}
-    </TransitionGroup>
+
+      <button
+        onClick={() => setReceivedAnswer(true)}
+        style={{ display: "block" }}
+      >
+        make true
+      </button>
+    </>
   )
 }
 export default AnswersAfterReveal
