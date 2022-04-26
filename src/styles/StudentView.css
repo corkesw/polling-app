@@ -61,29 +61,64 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 0.4s ease-in 0.4s;
+  transition: background-color 2s ease-in;
   cursor: pointer;
 }
-
+/*IF USER SELECTS CORRECT ANSWER*/
 .showCorrectAnswerTransition-appear {
+  opacity: 1;
   background-color: #786be4;
 }
 
 .showCorrectAnswerTransition-appear.showCorrectAnswerTransition-appear-active {
   background-color: #3dd980;
-  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+  opacity: 1;
+  transition: opacity 1.5s ease-in, background-color 1.5s ease-in;
 }
 
-/* .showIncorrectAnswerTransition-appear {
+/*IF USER SELECTS CORRECT ANSWER*/
+/* .showCorrectAnswerTransition-enter {
+  background-color: #786be4;
+}
+
+.showCorrectAnswerTransition-enter.showCorrectAnswerTransition-enter-active {
+  background-color: #3dd980;
+  transition: opacity 1.5s ease-in, background-color 1.5s;
+} */
+/*TRANSITION FOR CORRECT ANSWER BUT NOT CHOSEN*/
+.correctNotChosenAnswerTransition-appear {
+  opacity: 0.4;
+  background-color: #888888;
+}
+
+.correctNotChosenAnswerTransition-appear.showIncorrectAnswerTransition-appear-active {
+  opacity: 1;
+  background-color: #3dd980;
+  transition: opacity 1.5s ease-in, background-color 1.5s ease-in;
+}
+/*TRANSITION FOR INCORRECT ANSWER BUT CHOSEN*/
+.showIncorrectAnswerButChosenTransition-appear {
   opacity: 1;
   background-color: #786be4;
 }
 
-.showIncorrectAnswerTransition-appear.showIncorrectAnswerTransition-appear-active {
+.showIncorrectAnswerButChosenTransition-appear.showIncorrectAnswerTransition-appear-active {
   opacity: 0.4;
   background-color: #888888;
   transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
-} */
+}
+
+/*TRANSITION FOR INCORRECT ANSWER BUT NOT CHOSEN*/
+.showIncorrectAnswerNotChosenTransition-appear {
+  opacity: 0.4;
+  background-color: #888888;
+}
+
+.showIncorrectAnswerNotChosenTransition-appear.showIncorrectAnswerTransition-appear-active {
+  opacity: 0.4;
+  background-color: #888888;
+  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
+}
 
 .incorrectVoteButton {
   width: 350px;
