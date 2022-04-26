@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 import "../../styles/TutorView.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);

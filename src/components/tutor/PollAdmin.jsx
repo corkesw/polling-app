@@ -1,6 +1,6 @@
 import { getDatabase, onValue, ref, set, get } from "firebase/database";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PieMaker from "../PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
