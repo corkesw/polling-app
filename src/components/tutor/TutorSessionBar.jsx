@@ -3,6 +3,7 @@ import { getDatabase, ref, remove, set } from "firebase/database";
 import "../../styles/TutorView.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import {wipePoll} from "../../utils/localStorage"
 
 const database = getDatabase(firebaseApp);
 
@@ -31,6 +32,7 @@ const TutorSessionBar = ({
         setSessionName("");
         localStorage.removeItem("sessionId");
         localStorage.removeItem("sessionName");
+        wipePoll()
         navigate("/tutor");
       })
       .catch((err) => console.log(err));
