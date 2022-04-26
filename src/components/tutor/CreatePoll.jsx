@@ -7,16 +7,16 @@ import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);
 
-console.log(wipePoll);
 
-const CreatePoll = () => {
+
+const CreatePoll = ({sessionId}) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
-  const { sessionId } = useParams();
+
   const navigate = useNavigate();
 
-  console.log(answers.filter((answer) => answer !== "").length < 2);
+
 
   useEffect(() => {
     const localQuestion = localStorage.getItem("question");

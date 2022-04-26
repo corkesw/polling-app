@@ -3,7 +3,7 @@ import { getDatabase, ref, remove, set } from "firebase/database";
 import "../../styles/TutorView.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import {wipePoll} from "../../utils/localStorage"
+import { wipePoll } from "../../utils/localStorage";
 
 const database = getDatabase(firebaseApp);
 
@@ -14,7 +14,7 @@ const TutorSessionBar = ({
   sessionName,
 }) => {
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     if (
       localStorage.getItem("sessionId") &&
@@ -32,7 +32,7 @@ const TutorSessionBar = ({
         setSessionName("");
         localStorage.removeItem("sessionId");
         localStorage.removeItem("sessionName");
-        wipePoll()
+        wipePoll();
         navigate("/tutor");
       })
       .catch((err) => console.log(err));
@@ -91,10 +91,17 @@ const TutorSessionBar = ({
             <span className="highlight__text">
               localhost:3000/poll/{sessionId}
             </span>
-            <button onClick={handleCopyClick} className="ses__button tutor__button">
+            <button
+              onClick={handleCopyClick}
+              className="ses__button tutor__button"
+            >
               Copy Link
             </button>
-            <button className="ses__button tutor__button" type="button" onClick={clearSession}>
+            <button
+              className="ses__button tutor__button"
+              type="button"
+              onClick={clearSession}
+            >
               Clear session
             </button>
           </p>

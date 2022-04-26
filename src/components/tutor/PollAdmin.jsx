@@ -8,7 +8,7 @@ import { wipePoll } from "../../utils/localStorage.js";
 
 const database = getDatabase(firebaseApp);
 
-const PollAdmin = () => {
+const PollAdmin = ({sessionId}) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
   const [reveal, setReveal] = useState(false);
@@ -65,7 +65,7 @@ const PollAdmin = () => {
     "#99E6E6",
     "#6666FF",
   ];
-  const { sessionId } = useParams();
+
 
   const revealAnswer = () => {
     const path = `data/sessions/${sessionId}/pollData/reveal`;
