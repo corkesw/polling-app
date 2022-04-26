@@ -150,7 +150,7 @@ const CreatePoll = ({ sessionId }) => {
       >
         {}
         <div className="question">
-          <label className="input" htmlFor="question">
+          <label className="input question__label" htmlFor="question">
             Question
           </label>
           <input
@@ -164,9 +164,9 @@ const CreatePoll = ({ sessionId }) => {
         </div>
         {answers.map((_, index) => {
           return (
-            <div className="input__line" key={index}>
-              <label className="input" htmlFor={`answer${index + 1}`}>
-                Answer {index + 1}
+            <div className="input__line " key={index}>
+              <label className="input answer__line" htmlFor={`answer${index + 1}`}>
+                <span className="answer__label">Answer </span> {index + 1}
               </label>
 
               <input

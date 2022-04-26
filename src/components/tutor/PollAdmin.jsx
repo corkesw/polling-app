@@ -88,23 +88,28 @@ const PollAdmin = ({ sessionId }) => {
 
   return (
     <>
-      <h3>Poll Admin</h3>
-      <p>{question}</p>
+      <h3 className="heading">Poll Admin</h3>
+      <p className="subheading highlight__text">{question}</p>
 
       {answers.length ? <PieMaker answers={answers} /> : null}
-      <button onClick={reuseQuestion} className="tutor__button ses__button">
-        Back
-      </button>
-      <button
-        onClick={revealAnswer}
-        className="tutor__button ses__button"
-        disabled={reveal}
-      >
-        {!reveal ? <span>Reveal Answer</span> : <span>Answer revealed</span>}
-      </button>
-      <button onClick={newQuestion} className="tutor__button ses__button">
-        New Question
-      </button>
+      <div class="control__buttons">
+        <button
+          onClick={reuseQuestion}
+          className="tutor__button ses__button"
+        >
+          Back
+        </button>
+        <button
+          onClick={revealAnswer}
+          className="tutor__button ses__button"
+          disabled={reveal}
+        >
+          {!reveal ? <span>Reveal Answer</span> : <span>Answer revealed</span>}
+        </button>
+        <button onClick={newQuestion} className="tutor__button ses__button">
+          New Question
+        </button>
+      </div>
     </>
   );
 };

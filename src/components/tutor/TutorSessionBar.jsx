@@ -86,24 +86,28 @@ const TutorSessionBar = ({
         </form>
       ) : (
         <div className="session__box">
-          <p>
-            {sessionName} :{" "}
-            <span className="highlight__text">
-              localhost:3000/poll/{sessionId}
+          <p className="session__active">
+            <span>
+              {sessionName} :{" "}
+              <span className="highlight__text">
+                localhost:3000/poll/{sessionId}
+              </span>
             </span>
-            <button
-              onClick={handleCopyClick}
-              className="ses__button tutor__button"
-            >
-              Copy Link
-            </button>
-            <button
-              className="ses__button tutor__button"
-              type="button"
-              onClick={clearSession}
-            >
-              Clear session
-            </button>
+            <span>
+              <button
+                onClick={handleCopyClick}
+                className="ses__button tutor__button"
+              >
+                Copy Link
+              </button>
+              <button
+                className="ses__button tutor__button"
+                type="button"
+                onClick={clearSession}
+              >
+                Clear session
+              </button>
+            </span>
           </p>
         </div>
       )}
