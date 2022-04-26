@@ -27,9 +27,17 @@
 
 .delete__button {
   display: flex;
-  justify-content: center;
-  align-items:  center;
-  width: 1rem;
+  width: 21px;
+  min-width: 21px;
+  height: 21px;
+  padding: 0px;
+  display: block;
+  position: relative;
+  bottom: -2px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 3px;
 }
 
 /* The container */
@@ -86,6 +94,10 @@
 
 /* Show the checkmark when checked */
 .container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container input ~ .checkmark:after {
   display: block;
 }
 
