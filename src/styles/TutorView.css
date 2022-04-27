@@ -187,9 +187,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    background-color: lightgreen;
-  }
+ 
   .session__box {
     padding: 0.5rem;
     margin: 0.5rem;
@@ -214,9 +212,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  body {
-    background-color: red;
-  }
+  
   .answer__line {
     min-width: 0px;
     padding:0px;
