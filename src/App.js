@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminView from "./AdminView";
 import NavBar from "./components/NavBar";
 import LoginView from "./LoginView";
-import FourOhFour from "./FourOhFour";
+import ErrorFeedback from "./ErrorFeedback";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/tutor/*" element={<TutorView />}></Route>
           <Route path="/login" element={<LoginView />}></Route>
           <Route path="/admin" element={<AdminView />}></Route>
-          <Route path="*" element={<FourOhFour />}></Route>
+          <Route path="*" element={<ErrorFeedback code={"404"}/>}></Route>
         </Routes>
       </Router>
     </div>
