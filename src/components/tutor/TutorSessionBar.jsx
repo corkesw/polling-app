@@ -89,7 +89,7 @@ const TutorSessionBar = ({
           <p className="session__active">
             <span>
               {sessionName} :{" "}
-              <span className="highlight__text">
+              <span className="student__link">
                 localhost:3000/poll/{sessionId}
               </span>
             </span>

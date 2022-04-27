@@ -140,7 +140,7 @@ const CreatePoll = ({ sessionId }) => {
 
   return (
     <div className="content__box">
-      <h3 className="heading">Create Poll</h3>
+      <h2>Create Poll</h2>
       <form
         className="poll__form"
         onSubmit={handleSubmit}
