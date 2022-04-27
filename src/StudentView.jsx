@@ -3,7 +3,7 @@ import firebaseApp from "../src/firebase.js"
 import { getDatabase, ref, onValue, increment, set } from "firebase/database"
 import { useParams } from "react-router-dom"
 import "./styles/StudentView.css"
-import AnswersBeforeReveal from "./components/AnswersBeforeReveal.jsx"
+import Answers from "./components/Answers.jsx"
 import AnswersAfterReveal from "./components/AnswersAfterReveal.jsx"
 
 const database = getDatabase(firebaseApp)
@@ -14,10 +14,7 @@ const StudentView = () => {
 
   const [question, setQuestion] = useState("")
   const [answers, setAnswers] = useState([])
-  const [hasVoted, setHasVoted] = useState(false)
-  const [correctCount, setCorrectCount] = useState(0)
   const [answerRevealed, setAnswerRevealed] = useState(false)
-  const [userAnswer, setUserAnswer] = useState("")
   const [correctAnswer, setCorrectAnswer] = useState("")
 
   /*
@@ -28,8 +25,8 @@ const StudentView = () => {
 	*/
   useEffect(() => {
     setAnswerRevealed(false)
-    setHasVoted(false)
-    setUserAnswer("")
+    // setHasVoted(false)
+    // setUserAnswer("")
 
     onValue(sessionRef, (snapshot) => {
       const data = snapshot.val()
@@ -51,55 +48,28 @@ const StudentView = () => {
     })
   }, [question])
 
-  const vote = ({ answer, isCorrect }, answerKey) => {
-    // Set hasVoted state to disable button and stop multiple votes on same question
-    setHasVoted(true)
-
-    // Set the userAnswer state to the selectedAnswer
-    setUserAnswer(() => {
-      return answer
-    })
-
-    // Store userAnswer in localStorage
-    localStorage.setItem("userAnswer", answer)
-
-    // Increment the answer vote in db
-    set(
-      ref(database, `data/sessions/${seshId}/pollData/answers/${answerKey}`),
-      {
-        answer,
-        isCorrect,
-        votes: increment(1),
-      }
-    )
-  }
-
   return (
     <div id="container">
       <p>Student View!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-      {question && answers ? (
-        <div>
-          <p id="question">{question}</p>
-          {/* Render different answers component if reveal in db is true or false */}
-          {!answerRevealed ? (
-            <AnswersBeforeReveal
-              answers={answers}
-              userAnswer={userAnswer}
-              answerRevealed={answerRevealed}
-              hasVoted={hasVoted}
-              vote={vote}
-            />
-          ) : (
-            <AnswersAfterReveal
+      {/* {question && answers ? ( */}
+      <div>
+        <p id="question">{question}</p>
+
+        <Answers
+          answers={answers}
+          answerRevealed={answerRevealed}
+          correctAnswer={correctAnswer}
+        />
+
+        {/* <AnswersAfterReveal
               answers={answers}
               correctAnswer={correctAnswer}
               answerRevealed={answerRevealed}
-            />
-          )}
-        </div>
-      ) : null}
+            /> */}
+      </div>
+
       {/* Reset userAnswer and hasVoted for testing only */}
-      <button
+      {/* <button
         className="resetButton"
         value={"reset"}
         onClick={() => {
@@ -108,7 +78,7 @@ const StudentView = () => {
         }}
       >
         RESET ANSWER
-      </button>
+      </button> */}
     </div>
   )
 }
