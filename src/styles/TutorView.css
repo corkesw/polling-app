@@ -65,6 +65,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: content-box;
 }
 
 /* On mouse-over, add a grey background color */
