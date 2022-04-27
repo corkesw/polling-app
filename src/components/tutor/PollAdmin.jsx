@@ -93,17 +93,17 @@ const PollAdmin = ({ sessionId }) => {
 
       {answers.length ? <PieMaker answers={answers} /> : null}
       <div className="control__buttons">
-        <button onClick={reuseQuestion} className="tutor__button ses__button">
+        <button onClick={reuseQuestion} className="ses__button">
           Back
         </button>
         <button
           onClick={revealAnswer}
-          className="tutor__button ses__button"
+          className="ses__button"
           disabled={reveal}
         >
           {!reveal ? <span>Reveal Answer</span> : <span>Answer revealed</span>}
         </button>
-        <button onClick={newQuestion} className="tutor__button ses__button">
+        <button onClick={newQuestion} className="ses__button">
           New Question
         </button>
       </div>

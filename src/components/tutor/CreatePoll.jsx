@@ -205,7 +205,7 @@ const CreatePoll = ({ sessionId }) => {
                   </label>
 
                   <button
-                    className="delete__button tutor__button"
+                    className="delete__button"
                     onClick={() => {
                       removeAnswer(index);
                     }}
@@ -227,7 +227,7 @@ const CreatePoll = ({ sessionId }) => {
                   wipePoll();
                 }}
                 type="button"
-                className="tutor__button ses__button"
+                className="ses__button"
               >
                 Clear Form
               </button>
@@ -236,7 +236,7 @@ const CreatePoll = ({ sessionId }) => {
                   addAnswer();
                 }}
                 type="button"
-                className="tutor__button ses__button"
+                className="ses__button"
               >
                 Add answer
               </button>
