@@ -1,32 +1,42 @@
 * {
   padding: 0;
   margin: 0;
+  
 }
 
 .tutor__button {
-  background-color: #786be4;
-  padding: 0.5rem 1rem;
-  margin: 0rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  border: none;
-  width: 350px;
+  /* padding: 0.5rem 1rem; */
+  /* margin: 0rem; */
+  /* display: inline-block; */
+  /* text-decoration: none; */
+  /* color: #ffffff; */
+  /* font-family: "Mark Pro Medium";
+  border: none; */
+  /* width: 350px; */
 }
 
 
 .delete__button {
   display: flex;
-  justify-content: center;
-  align-items:  center;
+  width: 21px;
+  min-width: 21px;
+  height: 21px;
+  padding: 0px;
+  display: block;
+  position: relative;
+  bottom: -2px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 3px;
 }
 
 /* The container */
 .container {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 15px;
+  margin-right: 15px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -51,7 +61,7 @@
   width: 15px;
   background-color: #eee;
   border-radius: 3px;
-  padding:3px;
+  padding: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +74,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #786be4;
+  background-color: var(--dark-purple);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -79,10 +89,12 @@
   display: block;
 }
 
+.container input ~ .checkmark:after {
+  display: block;
+}
+
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  /* left: 4.5px; */
-  /* top: 1.5px; */
   margin-bottom: 3px;
   width: 3.5px;
   height: 7px;
@@ -92,7 +104,6 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
 
 /* session box styling*/
 .session__box {
@@ -111,21 +122,14 @@
   margin: 0rem 1rem;
 }
 
-.input:focus {
-  color: black
-}
-
 .ses__button {
   margin-left: 1rem;
+  /* width: 10rem; */
 }
 
-.ses__err__true {
-  background-color: red;
-}
-
-.highlight__text {
+.student__link {
   color: #786be4;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .content__box {
@@ -134,12 +138,11 @@
   margin: 2rem;
 }
 
-/* poll editor styling*/
-
-.heading {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
+.answer__box {
+  width: 25rem;
 }
+
+/* poll editor styling*/
 
 .poll__form {
   display: flex;
@@ -158,16 +161,68 @@
   grid-template-columns: 10rem 25rem 2rem 2rem;
   align-items: center;
   border-bottom: 1px solid rgb(218, 223, 218);
-  /* outline: 2px solid red; */
 }
 
 .question {
   margin-bottom: 2rem;
-  /* outline: 2px solid purple; */
   width: 90%;
-  display:flex;
+  display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 .question__input {
   width: 100%;
+  padding: 8px;
+}
+
+.answer__line {
+  min-width: 80px;
+}
+
+.control__buttons {
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .session__box {
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  .session__active {
+    display: flex;
+    flex-direction: column;
+  }
+  .ses__button {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 8px 4px;
+  }
+  .content__box {
+    background-color: #ffffff;
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  .answer__line {
+    margin: 8px 0px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  
+  .answer__line {
+    min-width: 0px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .answer__label {
+    display: none;
+  }
+  .question__label {
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+  .question__input {
+    padding: 8px;
+  }
 }

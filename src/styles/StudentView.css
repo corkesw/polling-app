@@ -1,13 +1,30 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
+/* container styling*/
+#container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#answers {
+  width: 90%;
+  border: 6px solid #dbdbfc;
+  margin: 0 auto;
+  max-width: 690px;
+  padding: 10px;
+}
 .voteButton {
   width: 350px;
   background-color: #786be4;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -19,11 +36,13 @@
   cursor: pointer;
 }
 
+/*users answer before reveal*/
 .selectedVoteButton {
   width: 350px;
   background-color: #786be4;
+  opacity: 1;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -33,83 +52,70 @@
   transition: background-color 1s ease-in;
   cursor: pointer;
 }
-
+/*ignored answers before reveal*/
 .unselectedVoteButton {
   width: 350px;
   background-color: #888888;
   opacity: 0.4;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
   cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
 }
 
-.correctVoteButton {
+/*users correct answer after reveal*/
+.userCorrect {
   width: 350px;
   background-color: #3dd980;
-  padding: 0.5em 1em;
-  margin: 0.2rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
-  transition: background-color 0.4s ease-in 0.4s;
-  cursor: pointer;
-}
-
-.showCorrectAnswerTransition-appear {
-  background-color: #786be4;
-}
-
-.showCorrectAnswerTransition-appear.showCorrectAnswerTransition-appear-active {
-  background-color: #3dd980;
-  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
-}
-
-/* .showIncorrectAnswerTransition-appear {
   opacity: 1;
-  background-color: #786be4;
-}
-
-.showIncorrectAnswerTransition-appear.showIncorrectAnswerTransition-appear-active {
-  opacity: 0.4;
-  background-color: #888888;
-  transition: opacity 1.5s ease-in 0.5s, background-color 1.5s ease-out 0.75s;
-} */
-
-.incorrectVoteButton {
-  width: 350px;
-  background-color: #dbdbfc;
-  min-width: 5rem;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  transition: background-color 1s ease-in 0.2s;
   cursor: pointer;
+  transition: background-color 0.7s ease-in;
 }
 
-.resetButton {
-  background-color: rgba(235, 28, 36, 0.65);
+/*users incorrect answer after reveal*/
+.userIncorrect {
+  width: 350px;
+  background-color: #888888;
+  opacity: 0.4;
+  padding: 0.5em 1em;
+  margin: 0.2em;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
   cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
 }
 
-#container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+/*unselected answer that is correct on reveal*/
+.userWrongButAnswerCorrect {
+  width: 350px;
+  background-color: #3dd980;
+  opacity: 1;
+  padding: 0.5em 1em;
+  margin: 0.2em;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
 }

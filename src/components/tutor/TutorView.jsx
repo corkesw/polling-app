@@ -6,6 +6,7 @@ import "../../styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Link, Route, Routes } from "react-router-dom";
 import TutorSessionBar from "./TutorSessionBar.jsx";
+import FourOhFour from "../../FourOhFour.jsx";
 
 const auth = getAuth(firebaseApp);
 
@@ -36,11 +37,30 @@ const TutorView = () => {
             sessionName={sessionName}
           />
           <Routes>
-            <Route path="/:sessionId" element={<CreatePoll />}></Route>
+            <Route
+              path="/:sessionId"
+              element={
+                sessionId && sessionName ? (
+                  <CreatePoll sessionId={sessionId} />
+                ) : (
+                  <FourOhFour
+                    error={
+                      "That session ID is not valid. Click above to start a new session"
+                    }
+                  />
+                )
+              }
+            ></Route>
             <Route
               path="/:sessionId/admin"
               element={
                 <PollAdmin sessionId={sessionId} setSessionId={setSessionId} />
+              }
+            ></Route>
+             <Route
+              path="*"
+              element={
+                <FourOhFour error={"That address doesn't look quite right"}/>
               }
             ></Route>
           </Routes>

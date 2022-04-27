@@ -1,5 +1,21 @@
 .pie__chart {
     display:flex;
     justify-content:center;
-    
+}
+
+.pie__legend {
+    display:grid;
+    grid-template-columns: 150px 20px;
+    font-size: 1.2rem;
+}
+
+.total__count {
+    color:black;
+    margin-top:1.2rem
+}
+
+.recharts-wrapper {
+    padding:0;
+    margin-left:200px;
+    margin-right: 100px;
 }
