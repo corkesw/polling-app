@@ -88,8 +88,8 @@ const PollAdmin = ({ sessionId }) => {
 
   return (
     <>
-      <h3 className="heading">Poll Admin</h3>
-      <p className="subheading highlight__text">{question}</p>
+      <h2>Poll Admin</h2>
+      <h3>{question}</h3>
 
       {answers.length ? <PieMaker answers={answers} /> : null}
       <div class="control__buttons">

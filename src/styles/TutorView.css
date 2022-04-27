@@ -5,24 +5,16 @@
 }
 
 .tutor__button {
-  background-color: #786be4;
-  padding: 0.5rem 1rem;
-  margin: 0rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  border: none;
-  width: 350px;
+  /* padding: 0.5rem 1rem; */
+  /* margin: 0rem; */
+  /* display: inline-block; */
+  /* text-decoration: none; */
+  /* color: #ffffff; */
+  /* font-family: "Mark Pro Medium";
+  border: none; */
+  /* width: 350px; */
 }
 
-.tutor__button:disabled {
-  background-color: #bdb9df;
-}
-
-.tutor__button:hover {
-  background-color: #4635e2;
-}
 
 .delete__button {
   display: flex;
@@ -82,7 +74,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #786be4;
+  background-color: var(--dark-purple);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -130,26 +122,14 @@
   margin: 0rem 1rem;
 }
 
-.input:focus {
-  outline-color: #786be4;
-}
-
-.input:focus {
-  color: black;
-}
-
 .ses__button {
   margin-left: 1rem;
-  width: 10rem;
+  /* width: 10rem; */
 }
 
-.ses__err__true {
-  background-color: red;
-}
-
-.highlight__text {
+.student__link {
   color: #786be4;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .content__box {
@@ -163,16 +143,6 @@
 }
 
 /* poll editor styling*/
-
-.heading {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-}
-
-.subheading {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
 
 .poll__form {
   display: flex;
@@ -214,9 +184,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    /* background-color: lightgreen; */
-  }
   .session__box {
     padding: 0.5rem;
     margin: 0.5rem;
@@ -241,9 +208,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  body {
-    background-color: red;
-  }
+  
   .answer__line {
     min-width: 0px;
     padding: 0px;

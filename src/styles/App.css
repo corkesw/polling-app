@@ -2,3 +2,65 @@
   text-align: center;
   font-family: "Mark Pro";
 }
+
+:root {
+  --dark-purple: #786be4;
+  --mid-purple: #9595f4;
+  --light-purple: #dbdbfc;
+  --hover-purple: #665cc6;
+  --nc-red: #eb1c24;
+  --dark-grey: #414042;
+  --mid-grey: #949598;
+  --light-grey: #d1d3d4;
+  --very-light-grey: #fif2f2
+}
+
+/* Name of app */
+h1 {
+  font-size : 2rem
+}
+/* Individual page names */
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-family: "Mark Pro Medium";
+}
+/* Highlighted sub-heading */
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: "Mark Pro";
+  color: var(--dark-purple)
+}
+
+input:focus {
+  outline-color: #786be4;
+}
+
+
+button, .primaryButton{
+  background-color: var(--dark-purple);
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  border: none;
+  width:10rem;
+  border-radius: 3px;
+}
+
+button:hover, .primaryButton:hover {
+  background-color: var(--hover-purple);
+}
+
+button:disabled .primaryButton:disabled {
+  background-color: var(--light-purple);
+}
+
+
+/*  
+general button styling
+colors
+responsiveness
+input boxes
+font sizes, weights for heading, subheading and body
+   */
