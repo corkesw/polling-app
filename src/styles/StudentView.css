@@ -1,13 +1,30 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
+/* container styling*/
+#container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#answers {
+  width: 90%;
+  border: 6px solid #dbdbfc;
+  margin: 0 auto;
+  max-width: 690px;
+  padding: 10px;
+}
 .voteButton {
   width: 350px;
   background-color: #786be4;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -25,7 +42,7 @@
   background-color: #786be4;
   opacity: 1;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -41,7 +58,7 @@
   background-color: #888888;
   opacity: 0.4;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -58,7 +75,7 @@
   background-color: #3dd980;
   opacity: 1;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -75,7 +92,7 @@
   background-color: #888888;
   opacity: 0.4;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -92,7 +109,7 @@
   background-color: #3dd980;
   opacity: 1;
   padding: 0.5em 1em;
-  margin: 0.2rem;
+  margin: 0.2em;
   display: inline-block;
   text-decoration: none;
   color: #ffffff;
@@ -101,92 +118,4 @@
   letter-spacing: 0.35px;
   cursor: pointer;
   transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
-}
-
-/*IF USER SELECTS CORRECT ANSWER*/
-/* .userCorrect-enter {
-  background-color: #786be4;
-}
-
-.userCorrect-enter-active {
-  background-color: #3dd980;
-  transition: background-color 2s ease-in;
-} */
-
-.correctVoteButton {
-  width: 350px;
-  background-color: #3dd980;
-  padding: 0.5em 1em;
-  margin: 0.2rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
-  cursor: pointer;
-}
-
-/* TRANSITION FOR CORRECT ANSWER BUT NOT CHOSEN
-.userWrongButAnswerCorrect-enter {
-  opacity: 0.4;
-  background-color: #888888;
-}
-
-.userWrongButAnswerCorrect-enter-active {
-  opacity: 1;
-  background-color: #3dd980;
-  transition: background-color 2s ease-in, opacity 2s ease-in;
-}
-
-/*TRANSITION FOR INCORRECT ANSWER BUT CHOSEN*/
-/* .userIncorrect-enter {
-  opacity: 1;
-  background-color: #786be4;
-}
-
-.userIncorrect-enter-active {
-  background-color: #888888;
-  opacity: 0.4;
-  transition: background-color 2s ease-in, opacity 2s ease-in;
-}
-
-/*TRANSITION FOR INCORRECT ANSWER BUT NOT CHOSEN*/
-/* .userIgnoredAndWrong-enter {
-  background-color: #888888;
-  opacity: 0.4;
-}
-
-.userIgnoredAndWrong-enter-active {
-  background-color: #888888;
-  opacity: 0.4;
-  transition: background-color 2s ease-in, opacity 2s ease-in;
-} */
-*/ */ .incorrectVoteButton {
-  width: 350px;
-  background-color: #dbdbfc;
-  min-width: 5rem;
-  padding: 0.5em 1em;
-  margin: 0.2rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
-  transition: background-color 1s ease-in 0.2s;
-  cursor: pointer;
-}
-
-.resetButton {
-  background-color: rgba(235, 28, 36, 0.65);
-  cursor: pointer;
-}
-
-#container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
 }

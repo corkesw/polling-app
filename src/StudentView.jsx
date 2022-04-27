@@ -4,7 +4,6 @@ import { getDatabase, ref, onValue, increment, set } from "firebase/database"
 import { useParams } from "react-router-dom"
 import "./styles/StudentView.css"
 import Answers from "./components/Answers.jsx"
-import AnswersAfterReveal from "./components/AnswersAfterReveal.jsx"
 
 const database = getDatabase(firebaseApp)
 
@@ -50,35 +49,16 @@ const StudentView = () => {
 
   return (
     <div id="container">
-      <p>Student View!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
       {/* {question && answers ? ( */}
       <div>
-        <p id="question">{question}</p>
+        <h2 id="question">{question}</h2>
 
         <Answers
           answers={answers}
           answerRevealed={answerRevealed}
           correctAnswer={correctAnswer}
         />
-
-        {/* <AnswersAfterReveal
-              answers={answers}
-              correctAnswer={correctAnswer}
-              answerRevealed={answerRevealed}
-            /> */}
       </div>
-
-      {/* Reset userAnswer and hasVoted for testing only */}
-      {/* <button
-        className="resetButton"
-        value={"reset"}
-        onClick={() => {
-          setUserAnswer("")
-          setHasVoted(false)
-        }}
-      >
-        RESET ANSWER
-      </button> */}
     </div>
   )
 }

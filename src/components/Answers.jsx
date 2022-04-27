@@ -27,7 +27,7 @@ const Answers = ({ answers, correctAnswer, answerRevealed }) => {
   }
 
   return (
-    <div className="answers">
+    <div id="answers">
       {answers.map((answerData, index) => {
         return (
           <button

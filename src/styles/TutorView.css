@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  
 }
 
 .tutor__button {
@@ -21,9 +22,7 @@
 
 .tutor__button:hover {
   background-color: #4635e2;
-
 }
-
 
 .delete__button {
   display: flex;
@@ -70,11 +69,10 @@
   width: 15px;
   background-color: #eee;
   border-radius: 3px;
-  padding:3px;
+  padding: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 /* On mouse-over, add a grey background color */
@@ -115,7 +113,6 @@
   transform: rotate(45deg);
 }
 
-
 /* session box styling*/
 .session__box {
   background-color: #ffffff;
@@ -138,7 +135,7 @@
 }
 
 .input:focus {
-  color: black
+  color: black;
 }
 
 .ses__button {
@@ -199,17 +196,17 @@
 .question {
   margin-bottom: 2rem;
   width: 90%;
-  display:flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 .question__input {
   width: 100%;
-  padding:8px;
+  padding: 8px;
 }
 
 .answer__line {
-  min-width:80px;
+  min-width: 80px;
 }
 
 .control__buttons {
@@ -225,7 +222,7 @@
     margin: 0.5rem;
   }
   .session__active {
-    display:flex;
+    display: flex;
     flex-direction: column;
   }
   .ses__button {
@@ -249,8 +246,8 @@
   }
   .answer__line {
     min-width: 0px;
-    padding:0px;
-    margin:0px;
+    padding: 0px;
+    margin: 0px;
   }
   .answer__label {
     display: none;
@@ -261,6 +258,6 @@
     margin-right: 10px;
   }
   .question__input {
-    padding:8px;
+    padding: 8px;
   }
 }
