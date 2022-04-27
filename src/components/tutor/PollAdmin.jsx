@@ -92,11 +92,8 @@ const PollAdmin = ({ sessionId }) => {
       <h3>{question}</h3>
 
       {answers.length ? <PieMaker answers={answers} /> : null}
-      <div class="control__buttons">
-        <button
-          onClick={reuseQuestion}
-          className="tutor__button ses__button"
-        >
+      <div className="control__buttons">
+        <button onClick={reuseQuestion} className="tutor__button ses__button">
           Back
         </button>
         <button
