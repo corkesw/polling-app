@@ -12,14 +12,31 @@
   justify-content: center;
   align-items: center;
 }
-
+/* question styling*/
+#question {
+  color: var(--dark-grey);
+  font-size: 2rem;
+}
+/* answers section styling*/
 #answers {
   width: 90%;
-  border: 6px solid #dbdbfc;
   margin: 0 auto;
   max-width: 690px;
-  padding: 10px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+/* specific answers section styling*/
+#answersList {
+  border: 2px solid var(--light-purple);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* answer style before voting*/
 .voteButton {
   width: 350px;
   background-color: #786be4;

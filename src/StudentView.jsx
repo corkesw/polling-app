@@ -15,6 +15,9 @@ const StudentView = () => {
   const [answers, setAnswers] = useState([])
   const [answerRevealed, setAnswerRevealed] = useState(false)
   const [correctAnswer, setCorrectAnswer] = useState("")
+  const [questionId, setQuestionId] = useState("")
+  const [userAnswer, setUserAnswer] = useState("")
+  const [hasVoted, setHasVoted] = useState(false)
 
   /*
 	When realtime db updates, set the question state
@@ -22,10 +25,11 @@ const StudentView = () => {
 		- set the different state to reflect the data from new poll in the same session, including the correct answer 
 		- re-enable the vote buttons so student can vote on new poll
 	*/
+
   useEffect(() => {
     setAnswerRevealed(false)
-    // setHasVoted(false)
-    // setUserAnswer("")
+    setUserAnswer("")
+    setHasVoted(false)
 
     onValue(sessionRef, (snapshot) => {
       const data = snapshot.val()
@@ -39,24 +43,30 @@ const StudentView = () => {
         if (answerData.isCorrect) setCorrectAnswer(answerData.answer)
       }
 
+      const questionId = data.pollData.question_id
       const answerRevealed = data.pollData.reveal
 
       setQuestion(question)
       setAnswers(answerCollection)
       setAnswerRevealed(answerRevealed)
+      setQuestionId(questionId)
     })
-  }, [question])
+  }, [questionId])
 
   return (
     <div id="container">
       {/* {question && answers ? ( */}
-      <div>
+      <div id="answers">
         <h2 id="question">{question}</h2>
 
         <Answers
           answers={answers}
           answerRevealed={answerRevealed}
           correctAnswer={correctAnswer}
+          userAnswer={userAnswer}
+          setUserAnswer={setUserAnswer}
+          setHasVoted={setHasVoted}
+          hasVoted={hasVoted}
         />
       </div>
     </div>

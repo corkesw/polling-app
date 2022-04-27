@@ -1,9 +1,15 @@
 import React, { useState } from "react"
 
-const Answers = ({ answers, correctAnswer, answerRevealed }) => {
+const Answers = ({
+  answers,
+  correctAnswer,
+  answerRevealed,
+  userAnswer,
+  setUserAnswer,
+  hasVoted,
+  setHasVoted,
+}) => {
   // state for storing users selected answer
-  const [userAnswer, setUserAnswer] = useState("")
-  const [hasVoted, setHasVoted] = useState(false)
 
   //VOTE FUNCTION
   const vote = ({ answer, isCorrect }, answerKey) => {
@@ -27,7 +33,7 @@ const Answers = ({ answers, correctAnswer, answerRevealed }) => {
   }
 
   return (
-    <div id="answers">
+    <div id="answersList">
       {answers.map((answerData, index) => {
         return (
           <button
