@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  
 }
 
 .tutor__button {
@@ -13,8 +14,6 @@
   border: none; */
   /* width: 350px; */
 }
-
-
 
 
 .delete__button {
@@ -62,11 +61,10 @@
   width: 15px;
   background-color: #eee;
   border-radius: 3px;
-  padding:3px;
+  padding: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 /* On mouse-over, add a grey background color */
@@ -106,7 +104,6 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
 
 /* session box styling*/
 .session__box {
@@ -169,17 +166,17 @@
 .question {
   margin-bottom: 2rem;
   width: 90%;
-  display:flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 .question__input {
   width: 100%;
-  padding:8px;
+  padding: 8px;
 }
 
 .answer__line {
-  min-width:80px;
+  min-width: 80px;
 }
 
 .control__buttons {
@@ -187,13 +184,12 @@
 }
 
 @media screen and (max-width: 768px) {
- 
   .session__box {
     padding: 0.5rem;
     margin: 0.5rem;
   }
   .session__active {
-    display:flex;
+    display: flex;
     flex-direction: column;
   }
   .ses__button {
@@ -215,8 +211,8 @@
   
   .answer__line {
     min-width: 0px;
-    padding:0px;
-    margin:0px;
+    padding: 0px;
+    margin: 0px;
   }
   .answer__label {
     display: none;
@@ -227,6 +223,6 @@
     margin-right: 10px;
   }
   .question__input {
-    padding:8px;
+    padding: 8px;
   }
 }
