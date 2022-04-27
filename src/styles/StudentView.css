@@ -15,13 +15,15 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   opacity: 1;
-  /* transition: background-color 0.4s ease-in, opacity 0.4s ease-in; */
+  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
   cursor: pointer;
 }
 
+/*users answer before reveal*/
 .selectedVoteButton {
   width: 350px;
   background-color: #786be4;
+  opacity: 1;
   padding: 0.5em 1em;
   margin: 0.2rem;
   display: inline-block;
@@ -30,10 +32,10 @@
   font-family: "Mark Pro Medium";
   font-size: 1.2rem;
   letter-spacing: 0.35px;
-  /* transition: background-color 1s ease-in; */
+  transition: background-color 1s ease-in;
   cursor: pointer;
 }
-
+/*ignored answers before reveal*/
 .unselectedVoteButton {
   width: 350px;
   background-color: #888888;
@@ -47,17 +49,69 @@
   font-size: 1.2rem;
   letter-spacing: 0.35px;
   cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+/*users correct answer after reveal*/
+.userCorrect {
+  width: 350px;
+  background-color: #3dd980;
+  opacity: 1;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+  transition: background-color 0.7s ease-in;
+}
+
+/*users incorrect answer after reveal*/
+.userIncorrect {
+  width: 350px;
+  background-color: #888888;
+  opacity: 0.4;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+/*unselected answer that is correct on reveal*/
+.userWrongButAnswerCorrect {
+  width: 350px;
+  background-color: #3dd980;
+  opacity: 1;
+  padding: 0.5em 1em;
+  margin: 0.2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Mark Pro Medium";
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+  transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
 }
 
 /*IF USER SELECTS CORRECT ANSWER*/
-.userCorrect-enter {
+/* .userCorrect-enter {
   background-color: #786be4;
 }
 
 .userCorrect-enter-active {
   background-color: #3dd980;
   transition: background-color 2s ease-in;
-}
+} */
 
 .correctVoteButton {
   width: 350px;
@@ -73,7 +127,7 @@
   cursor: pointer;
 }
 
-/*TRANSITION FOR CORRECT ANSWER BUT NOT CHOSEN*/
+/* TRANSITION FOR CORRECT ANSWER BUT NOT CHOSEN
 .userWrongButAnswerCorrect-enter {
   opacity: 0.4;
   background-color: #888888;
@@ -86,7 +140,7 @@
 }
 
 /*TRANSITION FOR INCORRECT ANSWER BUT CHOSEN*/
-.userIncorrect-enter {
+/* .userIncorrect-enter {
   opacity: 1;
   background-color: #786be4;
 }
@@ -98,7 +152,7 @@
 }
 
 /*TRANSITION FOR INCORRECT ANSWER BUT NOT CHOSEN*/
-.userIgnoredAndWrong-enter {
+/* .userIgnoredAndWrong-enter {
   background-color: #888888;
   opacity: 0.4;
 }
@@ -107,9 +161,8 @@
   background-color: #888888;
   opacity: 0.4;
   transition: background-color 2s ease-in, opacity 2s ease-in;
-}
-
-.incorrectVoteButton {
+} */
+*/ */ .incorrectVoteButton {
   width: 350px;
   background-color: #dbdbfc;
   min-width: 5rem;

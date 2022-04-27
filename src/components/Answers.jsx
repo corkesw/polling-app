@@ -45,7 +45,7 @@ const Answers = ({ answers, correctAnswer, answerRevealed }) => {
                     : //is not selected answer correct?
                     answerData.answer === correctAnswer
                     ? "userWrongButAnswerCorrect"
-                    : "userIgnoredAndWrong"
+                    : "unselectedVoteButton"
                   : //if there is no user answer - standard vote button
                     "voteButton"
                 : // IF ANSWER HAS NOT BEEN REVEALED
@@ -54,7 +54,8 @@ const Answers = ({ answers, correctAnswer, answerRevealed }) => {
                   userAnswer === answerData.answer
                   ? "selectedVoteButton"
                   : "unselectedVoteButton"
-                : "voteButton"
+                : // if user has not selected an answer
+                  "voteButton"
             }
             disabled={hasVoted}
             onClick={(e) => {
