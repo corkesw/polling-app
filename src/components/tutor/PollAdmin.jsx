@@ -58,7 +58,7 @@ const PollAdmin = ({ sessionId }) => {
   }, [sessionId]);
 
   return (
-    <>
+    <div id="poll__admin">
       <h2>Poll Admin</h2>
       <h3>{question}</h3>
 
@@ -80,7 +80,7 @@ const PollAdmin = ({ sessionId }) => {
           New Question
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
