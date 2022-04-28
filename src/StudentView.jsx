@@ -104,7 +104,11 @@ const StudentView = () => {
           database={database}
           seshId={seshId}
         />
-        <PieMaker answers={pieData} revealChart={hasVoted} />
+        <PieMaker
+          answers={pieData}
+          revealChart={hasVoted}
+		  renderStudentLabel={true}
+        />
       </div>
     </div>
   );
