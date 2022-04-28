@@ -40,15 +40,16 @@ input:focus {
 button,
 .primaryButton {
   background-color: var(--dark-purple);
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   color: #ffffff;
   font-family: "Mark Pro Medium";
   border: none;
   width: 10rem;
   border-radius: 3px;
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
 }
-
-.voteButton:hover,
+button:hover,
 .primaryButton:hover {
   background-color: var(--hover-purple);
 }

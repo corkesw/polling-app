@@ -40,14 +40,8 @@
 .voteButton {
   width: 350px;
   background-color: #786be4;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   opacity: 1;
   transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
   cursor: pointer;
@@ -58,32 +52,28 @@
   width: 350px;
   background-color: #786be4;
   opacity: 1;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   transition: background-color 1s ease-in;
   cursor: pointer;
+}
+
+.selectedVoteButton:hover {
+  background-color: #786be4;
 }
 /*ignored answers before reveal*/
 .unselectedVoteButton {
   width: 350px;
   background-color: #888888;
   opacity: 0.4;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   cursor: pointer;
   transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+.unselectedVoteButton:hover {
+  background-color: #888888;
 }
 
 /*users correct answer after reveal*/
@@ -91,16 +81,14 @@
   width: 350px;
   background-color: #3dd980;
   opacity: 1;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   cursor: pointer;
   transition: background-color 0.7s ease-in;
+}
+
+.userCorrect:hover {
+  background-color: #3dd980;
 }
 
 /*users incorrect answer after reveal*/
@@ -108,16 +96,14 @@
   width: 350px;
   background-color: #888888;
   opacity: 0.4;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   cursor: pointer;
   transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+.userIncorrect:hover {
+  background-color: #888888;
 }
 
 /*unselected answer that is correct on reveal*/
@@ -125,14 +111,12 @@
   width: 350px;
   background-color: #3dd980;
   opacity: 1;
-  padding: 0.5em 1em;
   margin: 0.2em;
   display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "Mark Pro Medium";
-  font-size: 1.2rem;
-  letter-spacing: 0.35px;
   cursor: pointer;
   transition: background-color 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+.userWrongButAnswerCorrect:hover {
+  background-color: #3dd980;
 }
