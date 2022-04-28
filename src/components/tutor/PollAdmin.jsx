@@ -1,7 +1,7 @@
 import { getDatabase, onValue, ref, set, get } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PieMaker from "../PieMaker";
+import PieMaker from "../PieChart/PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
 import { wipePoll } from "../../utils/localStorage.js";

@@ -1,6 +1,6 @@
 import { Database, increment, ref, set } from "firebase/database";
 import React, { useState } from "react";
-import colours from "../utils/colours";
+import colours from "../../utils/colours";
 
 const Answers = ({ answers, correctAnswer, answerRevealed, userAnswer, setUserAnswer, hasVoted, setHasVoted, database, seshId }) => {
 	// state for storing users selected answer

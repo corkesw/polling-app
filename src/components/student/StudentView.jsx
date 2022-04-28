@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
-import firebaseApp from "../src/firebase.js"
+import firebaseApp from "../../firebase"
 import { getDatabase, ref, onValue, increment, set } from "firebase/database"
 import { useParams } from "react-router-dom"
-import "./styles/StudentView.css"
-import Answers from "./components/Answers.jsx"
-import PieMaker from "./components/PieMaker"
-import colours from "./utils/colours"
+import "../../styles/StudentView.css"
+import Answers from "./Answers.jsx"
+import PieMaker from "../PieChart/PieMaker"
+import colours from "../../utils/colours"
 
 const database = getDatabase(firebaseApp)
 

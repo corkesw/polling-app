@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Legend, Pie, PieChart } from "recharts";
-import "../styles/PieMaker.css";
+import React, { useEffect, useState } from "react"
+import { Legend, Pie, PieChart } from "recharts"
+import "../../styles/PieMaker.css"
 
 const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
-  console.log(renderStudentLabel);
-  const [hasVotes, setHasVotes] = useState(false);
+  console.log(renderStudentLabel)
+  const [hasVotes, setHasVotes] = useState(false)
   const votesCast = answers.reduce((previousAnswer, currentAnswer) => {
-    return previousAnswer + currentAnswer.value;
-  }, 0);
+    return previousAnswer + currentAnswer.value
+  }, 0)
   useEffect(() => {
-    const votes = answers.filter((answer) => answer.value > 0);
-    votes.length ? setHasVotes(true) : setHasVotes(false);
-  }, [answers]);
+    const votes = answers.filter((answer) => answer.value > 0)
+    votes.length ? setHasVotes(true) : setHasVotes(false)
+  }, [answers])
 
-  const RADIAN = Math.PI / 180;
+  const RADIAN = Math.PI / 180
   const renderLabel = function ({
     value,
     cx,
@@ -22,11 +22,11 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
     innerRadius,
     midAngle,
   }) {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+    const x = cx + radius * Math.cos(-midAngle * RADIAN)
+    const y = cy + radius * Math.sin(-midAngle * RADIAN)
     if (value === 0) {
-      return;
+      return
     }
 
     return (
@@ -39,20 +39,20 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
       >
         {`${((value / votesCast) * 100).toFixed(0)}%`}
       </text>
-    );
-  };
+    )
+  }
 
   const renderLab = function (entry) {
     if (entry.value === 0) {
-      return;
+      return
     }
 
-    return `${((entry.value / votesCast) * 100).toFixed(1)}%`;
-  };
+    return `${((entry.value / votesCast) * 100).toFixed(1)}%`
+  }
 
   const formatter = (value, entry, index, votesCast) => {
-    const { color } = entry;
-    const { payload } = entry;
+    const { color } = entry
+    const { payload } = entry
     return (
       <div className="pie__legend">
         <span style={{ color }}>{value}</span>
@@ -64,8 +64,8 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
           </>
         ) : null}
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -118,14 +118,14 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
           </>
         ) : (
           <img
-            src={require("../images/pie.png")}
+            src={require("../../images/pie.png")}
             alt="Pie-holder"
             width="400"
           ></img>
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default PieMaker;
+export default PieMaker

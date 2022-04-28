@@ -6,7 +6,7 @@ import "../../styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Link, Route, Routes } from "react-router-dom";
 import TutorSessionBar from "./TutorSessionBar.jsx";
-import ErrorFeedback from "../../ErrorFeedback.jsx";
+import ErrorFeedback from "../adminComponents/ErrorFeedback.jsx";
 
 const auth = getAuth(firebaseApp);
 
