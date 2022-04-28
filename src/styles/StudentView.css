@@ -79,7 +79,7 @@
 /*users correct answer after reveal*/
 .userCorrect {
   width: 350px;
-  background-color: #3dd980;
+  background-color: #3dd980 !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -88,7 +88,7 @@
 }
 
 .userCorrect:hover {
-  background-color: #3dd980;
+  background-color: #3dd980 !important;
 }
 
 /*users incorrect answer after reveal*/
@@ -108,7 +108,7 @@
 /*unselected answer that is correct on reveal*/
 .userWrongButAnswerCorrect {
   width: 350px;
-  background-color: #3dd980;
+  background-color: #3dd980 !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -117,5 +117,5 @@
 }
 
 .userWrongButAnswerCorrect:hover {
-  background-color: #3dd980;
+  background-color: #3dd980 !important;
 }

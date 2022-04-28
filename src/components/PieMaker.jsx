@@ -52,7 +52,7 @@ const PieMaker = ({ answers, revealChart }) => {
 				{hasVotes ? (
 					<>
 						<PieChart width={800} height={450} marginRight={30}>
-							<Legend chartWidth={690} chartHeight={500} />
+							<Legend chartWidth={690} chartHeight={500}  payload={[{}]} iconSize={0} layout={'horizontal'}/>
 							<Pie data={answers} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={170} label={renderLabel} labelLine={false} />
 						</PieChart>
 					</>
