@@ -1,12 +1,31 @@
 .pie__chart {
     display:flex;
+    align-items: center;
     justify-content:center;
+    opacity: 1;
+    transition: opacity 0.7s ease-in;
+    outline: 1px solid black;
+    width: 100%;
+}
+
+.hidden__pie__chart {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0
 }
 
 .pie__legend {
     display:grid;
     grid-template-columns: 150px 20px;
     font-size: 1.2rem;
+    outline: 1px solid red;
+}
+
+.recharts-default-legend {
+    outline: 1px solid red;
+    margin-left: 40px;
+    width: 100%
 }
 
 .total__count {
@@ -18,4 +37,6 @@
     padding:0;
     margin-left:200px;
     margin-right: 100px;
+    outline: 1px dashed black;
+    width: 50%
 }

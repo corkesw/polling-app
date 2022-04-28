@@ -28,7 +28,7 @@
 
 /* specific answers section styling*/
 #answersList {
-  border: 2px solid var(--light-purple);
+  border: 1px solid var(--light-purple);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -43,14 +43,15 @@
   margin: 0.2em;
   display: inline-block;
   opacity: 1;
-  transition: background-color 0.4s ease-in, opacity 0.4s ease-in;
+  transition: background-color 0.7s ease-in, opacity 0.4s ease-in;
   cursor: pointer;
 }
 
 /*users answer before reveal*/
 .selectedVoteButton {
   width: 350px;
-  background-color: #786be4;
+  /* Overwriting dynamic inline colors */
+  background-color: #786be4 !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -65,7 +66,6 @@
 .unselectedVoteButton {
   width: 350px;
   background-color: #888888;
-  opacity: 0.4;
   margin: 0.2em;
   display: inline-block;
   cursor: pointer;
@@ -95,7 +95,6 @@
 .userIncorrect {
   width: 350px;
   background-color: #888888;
-  opacity: 0.4;
   margin: 0.2em;
   display: inline-block;
   cursor: pointer;
