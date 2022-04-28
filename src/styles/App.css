@@ -52,7 +52,11 @@ button:hover, .primaryButton:hover {
   background-color: var(--hover-purple);
 }
 
-button:disabled .primaryButton:disabled {
+button:disabled, .primaryButton:disabled {
+  background-color: var(--light-purple);
+}
+
+button[disabled]:hover {
   background-color: var(--light-purple);
 }
 

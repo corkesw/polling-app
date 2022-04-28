@@ -6,7 +6,7 @@ import "../../styles/TutorView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Link, Route, Routes } from "react-router-dom";
 import TutorSessionBar from "./TutorSessionBar.jsx";
-import FourOhFour from "../../FourOhFour.jsx";
+import ErrorFeedback from "../../ErrorFeedback.jsx";
 
 const auth = getAuth(firebaseApp);
 
@@ -14,7 +14,7 @@ const TutorView = () => {
   const [sessionId, setSessionId] = useState("");
   const [sessionName, setSessionName] = useState("");
   const [isUser, setIsUser] = useState(false);
-
+  
   useEffect(() => {
     // check if user logged in - will prompt to login in if no user
     onAuthStateChanged(auth, (user) => {
@@ -38,32 +38,28 @@ const TutorView = () => {
           />
           <Routes>
             <Route
-              path="/:sessionId"
+              path="/:sessionIdFromParams"
               element={
                 sessionId && sessionName ? (
                   <CreatePoll sessionId={sessionId} />
                 ) : (
-                  <FourOhFour
-                    error={
-                      "That session ID is not valid. Click above to start a new session"
-                    }
-                  />
+                 null
                 )
               }
             ></Route>
             <Route
-              path="/:sessionId/admin"
+              path="/:sessionIdFromParams/admin"
               element={
                 <PollAdmin sessionId={sessionId} setSessionId={setSessionId} />
               }
             ></Route>
-             <Route
-              path="*"
-              element={
-                <FourOhFour error={"That address doesn't look quite right"}/>
-              }
-            ></Route>
           </Routes>
+          {!sessionId ? (
+            <ErrorFeedback
+              code={"Hey!"}
+              error={"You must start a session to create a poll"}
+            />
+          ) : null}
         </div>
       ) : (
         <Link className="primaryButton" to="/login">

@@ -82,7 +82,7 @@ const TutorSessionBar = ({
             id="sesName"
             type="text"
           ></input>
-          <button className="ses__button tutor__button">Start session</button>
+          <button>Start session</button>
         </form>
       ) : (
         <div className="session__box">
@@ -96,12 +96,12 @@ const TutorSessionBar = ({
             <span>
               <button
                 onClick={handleCopyClick}
-                className="ses__button tutor__button"
+                className="ses__button"
               >
                 Copy Link
               </button>
               <button
-                className="ses__button tutor__button"
+                className="ses__button"
                 type="button"
                 onClick={clearSession}
               >
