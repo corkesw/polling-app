@@ -12,12 +12,12 @@
   --dark-grey: #414042;
   --mid-grey: #949598;
   --light-grey: #d1d3d4;
-  --very-light-grey: #fif2f2
+  --very-light-grey: #fif2f2;
 }
 
 /* Name of app */
 h1 {
-  font-size : 2rem
+  font-size: 2rem;
 }
 /* Individual page names */
 h2 {
@@ -30,25 +30,27 @@ h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-family: "Mark Pro";
-  color: var(--dark-purple)
+  color: var(--dark-purple);
 }
 
 input:focus {
   outline-color: #786be4;
 }
 
-
-button, .primaryButton{
+button,
+.primaryButton {
   background-color: var(--dark-purple);
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   color: #ffffff;
   font-family: "Mark Pro Medium";
   border: none;
-  width:10rem;
+  width: 10rem;
   border-radius: 3px;
+  font-size: 1.2rem;
+  letter-spacing: 0.35px;
 }
-
-button:hover, .primaryButton:hover {
+button:hover,
+.primaryButton:hover {
   background-color: var(--hover-purple);
 }
 
@@ -59,7 +61,6 @@ button:disabled, .primaryButton:disabled {
 button[disabled]:hover {
   background-color: var(--light-purple);
 }
-
 
 /*  
 general button styling
