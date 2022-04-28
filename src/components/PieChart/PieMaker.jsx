@@ -3,13 +3,21 @@ import { Legend, Pie, PieChart } from "recharts"
 import "../../styles/PieMaker.css"
 
 const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
-  console.log(renderStudentLabel)
   const [hasVotes, setHasVotes] = useState(false)
+  const [totalVotes, setTotalVotes] = useState(0)
+
   const votesCast = answers.reduce((previousAnswer, currentAnswer) => {
     return previousAnswer + currentAnswer.value
   }, 0)
+
   useEffect(() => {
     const votes = answers.filter((answer) => answer.value > 0)
+   // this could be done better - but stores amount of votes in state and updates on every new answer
+    let voteTotal = 0
+    votes.forEach((vote) => (voteTotal += vote.value))
+
+    setTotalVotes(() => voteTotal)
+
     votes.length ? setHasVotes(true) : setHasVotes(false)
   }, [answers])
 
@@ -60,7 +68,7 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
         {index === answers.length - 1 ? (
           <>
             <span className="total__count">Total</span>
-            <span className="total__count">{votesCast}</span>
+            <span className="total__count">{totalVotes}</span>
           </>
         ) : null}
       </div>
