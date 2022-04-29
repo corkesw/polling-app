@@ -1,8 +1,10 @@
-import React from "react";
-import "../../styles/Home.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import "../../styles/Home.css"
+import { Link } from "react-router-dom"
+import IsLoading from "../IsLoading"
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true)
   return (
     <div>
       <div className="contentBox">
@@ -20,7 +22,7 @@ const Home = () => {
       </div>
       {/* <Link to="/admin">Admin</Link> */}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

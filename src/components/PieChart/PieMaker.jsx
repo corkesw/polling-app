@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Legend, Pie, PieChart } from "recharts"
 import "../../styles/PieMaker.css"
 
+import IsLoading from "../IsLoading"
+
 const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
   const [hasVotes, setHasVotes] = useState(false)
   const [totalVotes, setTotalVotes] = useState(0)
@@ -12,7 +14,7 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
 
   useEffect(() => {
     const votes = answers.filter((answer) => answer.value > 0)
-   // this could be done better - but stores amount of votes in state and updates on every new answer
+    // this could be done better - but stores amount of votes in state and updates on every new answer
     let voteTotal = 0
     votes.forEach((vote) => (voteTotal += vote.value))
 
@@ -125,11 +127,16 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
             )}
           </>
         ) : (
-          <img
-            src={require("../../images/pie.png")}
-            alt="Pie-holder"
-            width="400"
-          ></img>
+          <div className="vote__loading">
+            <IsLoading type={"spinningBubbles"} />
+            <h3 style={{ color: "black" }}>Waiting For Votes</h3>
+          </div>
+
+          // <img
+          //   src={require("../../images/pie.png")}
+          //   alt="Pie-holder"
+          //   width="400"
+          // ></img>
         )}
       </div>
     </>
