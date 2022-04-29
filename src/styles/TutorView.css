@@ -121,7 +121,7 @@
 }
 
 .content__box {
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: 3rem;
   margin: 2rem;
 }
@@ -196,7 +196,7 @@
     padding: 8px 4px;
   }
   .content__box {
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 0.5rem;
     margin: 0.5rem;
   }

@@ -8,11 +8,14 @@
   --mid-purple: #9595f4;
   --light-purple: #dbdbfc;
   --hover-purple: #665cc6;
+  --dark-green : #3dd980;
   --nc-red: #eb1c24;
   --dark-grey: #414042;
   --mid-grey: #949598;
   --light-grey: #d1d3d4;
-  --very-light-grey: #fif2f2;
+  --very-light-grey: #f1f2f2;
+  --black: #000000;
+  --white: #ffffff;
 }
 
 /* Name of app */
