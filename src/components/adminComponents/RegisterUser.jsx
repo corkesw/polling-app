@@ -11,7 +11,6 @@ const RegisterUser = ({ auth }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(auth);
     if (loading) return;
   }, [loading]);
 

@@ -26,7 +26,6 @@ const PollAdmin = ({
     const path = `data/sessions/${sessionId}/pollData/reveal`;
     set(ref(database, path), !reveal);
   };
-  console.log("PollAdmin");
   const newQuestion = () => {
     wipePoll();
     navigate(`/tutor/${sessionId}`);
