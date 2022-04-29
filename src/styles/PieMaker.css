@@ -26,8 +26,8 @@
 }
 
 .total__count {
-  color: black;
-  margin-top: 1.2rem;
+    color: var(--black);
+    margin-top:1.2rem
 }
 
 .vote__loading {
