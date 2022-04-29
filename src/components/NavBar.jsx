@@ -3,7 +3,6 @@ import "../styles/NavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { slide as Menu } from "react-burger-menu";
 
 import firebaseApp from "../firebase";
 
@@ -37,7 +36,7 @@ const NavBar = () => {
 	const renderButtons = () => {
 		if (innerWidth.width < 810) {
 			return (
-				<Menu width={500}>
+				<div>
 					<Link className="nav-link" to="/tutor">
 						Polls
 					</Link>
@@ -47,7 +46,7 @@ const NavBar = () => {
 					<button className="primaryButton" onClick={logout}>
 						Logout
 					</button>
-				</Menu>
+				</div>
 			);
 		} else {
 			if (user) {
