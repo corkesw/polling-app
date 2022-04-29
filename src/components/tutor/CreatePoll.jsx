@@ -4,7 +4,7 @@ import { getDatabase, ref, set } from "firebase/database";
 import "../../styles/TutorView.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { wipePoll } from "../../utils/localStorage.js";
-import ErrorFeedback from "../../ErrorFeedback.jsx";
+import ErrorFeedback from "../adminComponents/ErrorFeedback.jsx";
 
 const database = getDatabase(firebaseApp);
 

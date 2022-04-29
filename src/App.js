@@ -1,12 +1,12 @@
-import "./styles/App.css";
-import StudentView from "./StudentView";
-import TutorView from "./components/tutor/TutorView";
-import Home from "./Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AdminView from "./AdminView";
-import NavBar from "./components/NavBar";
-import LoginView from "./LoginView";
-import ErrorFeedback from "./ErrorFeedback";
+import "./styles/App.css"
+import StudentView from "./components/student/StudentView"
+import TutorView from "./components/tutor/TutorView"
+import Home from "./components/Home/Home"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import AdminView from "./components/adminComponents/AdminView"
+import NavBar from "./components/NavBar"
+import LoginView from "./components/adminComponents/LoginView"
+import ErrorFeedback from "./components/adminComponents/ErrorFeedback"
 
 function App() {
   return (
@@ -19,11 +19,11 @@ function App() {
           <Route path="/tutor/*" element={<TutorView />}></Route>
           <Route path="/login" element={<LoginView />}></Route>
           <Route path="/admin" element={<AdminView />}></Route>
-          <Route path="*" element={<ErrorFeedback code={"404"}/>}></Route>
+          <Route path="*" element={<ErrorFeedback code={"404"} />}></Route>
         </Routes>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

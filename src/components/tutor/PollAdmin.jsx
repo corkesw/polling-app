@@ -1,7 +1,7 @@
 import { getDatabase, onValue, ref, set, get } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PieMaker from "../PieMaker";
+import PieMaker from "../PieChart/PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
 import { wipePoll } from "../../utils/localStorage.js";
@@ -58,7 +58,7 @@ const PollAdmin = ({ sessionId }) => {
   }, [sessionId]);
 
   return (
-    <>
+    <div id="poll__admin">
       <h2>Poll Admin</h2>
       <h3>{question}</h3>
 
@@ -80,7 +80,7 @@ const PollAdmin = ({ sessionId }) => {
           New Question
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

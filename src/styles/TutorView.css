@@ -1,7 +1,6 @@
 * {
   padding: 0;
   margin: 0;
-  
 }
 
 .delete__button {
@@ -100,8 +99,8 @@
   padding: 1rem;
   margin: 2rem;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -132,6 +131,13 @@
 }
 
 /* poll editor styling*/
+
+#poll__admin {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2em;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 
 .poll__form {
   display: flex;
@@ -170,6 +176,9 @@
 
 .control__buttons {
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -197,7 +206,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  
   .answer__line {
     min-width: 0px;
     padding: 0px;
