@@ -1,15 +1,22 @@
 import { getDatabase, onValue, ref, set, get } from "firebase/database";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PieMaker from "../PieChart/PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
 import { wipePoll } from "../../utils/localStorage.js";
 import colours from "../../utils/colours";
+import TutorSessionBar from "./TutorSessionBar";
 
 const database = getDatabase(firebaseApp);
 
-const PollAdmin = ({ sessionId }) => {
+const PollAdmin = ({
+  sessionId,
+  setSessionId,
+  sessionName,
+  setSessionName,
+  isUser,
+}) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
   const [reveal, setReveal] = useState(false);
@@ -19,7 +26,6 @@ const PollAdmin = ({ sessionId }) => {
     const path = `data/sessions/${sessionId}/pollData/reveal`;
     set(ref(database, path), !reveal);
   };
-
   const newQuestion = () => {
     wipePoll();
     navigate(`/tutor/${sessionId}`);
@@ -58,29 +64,49 @@ const PollAdmin = ({ sessionId }) => {
   }, [sessionId]);
 
   return (
-    <div id="poll__admin">
-      <h2>Poll Admin</h2>
-      <h3>{question}</h3>
+    <>
+      {isUser ? (
+        <>
+          <TutorSessionBar
+            sessionId={sessionId}
+            setSessionId={setSessionId}
+            sessionName={sessionName}
+            setSessionName={setSessionName}
+          />
+          <div id="poll__admin">
+            <h2>Poll Admin</h2>
+            <h3>{question}</h3>
 
-      {answers.length ? (
-        <PieMaker answers={answers} revealChart={true} />
-      ) : null}
-      <div className="control__buttons">
-        <button onClick={reuseQuestion} className="ses__button">
-          Back
-        </button>
-        <button
-          onClick={revealAnswer}
-          className="ses__button"
-          disabled={reveal}
-        >
-          {!reveal ? <span>Reveal Answer</span> : <span>Answer revealed</span>}
-        </button>
-        <button onClick={newQuestion} className="ses__button">
-          New Question
-        </button>
-      </div>
-    </div>
+            {answers.length ? (
+              <PieMaker answers={answers} revealChart={true} />
+            ) : null}
+            <div className="control__buttons">
+              <button onClick={reuseQuestion} className="ses__button">
+                Back
+              </button>
+              <button
+                onClick={revealAnswer}
+                className="ses__button"
+                disabled={reveal}
+              >
+                {!reveal ? (
+                  <span>Reveal Answer</span>
+                ) : (
+                  <span>Answer revealed</span>
+                )}
+              </button>
+              <button onClick={newQuestion} className="ses__button">
+                New Question
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <Link className="primaryButton" to="/login">
+          Tutor Login
+        </Link>
+      )}
+    </>
   );
 };
 

@@ -39,7 +39,7 @@
 /* answer style before voting*/
 .voteButton {
   width: 350px;
-  background-color: #786be4;
+  background-color: var(--dark-purple);
   margin: 0.2em;
   display: inline-block;
   opacity: 1;
@@ -51,7 +51,7 @@
 .selectedVoteButton {
   width: 350px;
   /* Overwriting dynamic inline colors */
-  background-color: #786be4 !important;
+  background-color: var(--dark-purple) !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -60,12 +60,12 @@
 }
 
 .selectedVoteButton:hover {
-  background-color: #786be4;
+  background-color: var(--dark-purple);
 }
 /*ignored answers before reveal*/
 .unselectedVoteButton {
   width: 350px;
-  background-color: #888888;
+  background-color: var(--mid-grey);
   margin: 0.2em;
   display: inline-block;
   cursor: pointer;
@@ -73,13 +73,13 @@
 }
 
 .unselectedVoteButton:hover {
-  background-color: #888888;
+  background-color: var(--mid-grey);
 }
 
 /*users correct answer after reveal*/
 .userCorrect {
   width: 350px;
-  background-color: #3dd980 !important;
+  background-color: var(--dark-green) !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -88,7 +88,7 @@
 }
 
 .userCorrect:hover {
-  background-color: #3dd980 !important;
+  background-color: var(--dark-green) !important;
 }
 
 /*users incorrect answer after reveal*/
@@ -108,7 +108,7 @@
 /*unselected answer that is correct on reveal*/
 .userWrongButAnswerCorrect {
   width: 350px;
-  background-color: #3dd980 !important;
+  background-color: var(--dark-green) !important;
   opacity: 1;
   margin: 0.2em;
   display: inline-block;
@@ -117,5 +117,5 @@
 }
 
 .userWrongButAnswerCorrect:hover {
-  background-color: #3dd980 !important;
+  background-color: var(--dark-green) !important;
 }
