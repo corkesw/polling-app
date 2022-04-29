@@ -11,11 +11,9 @@ import ErrorFeedback from "./components/adminComponents/ErrorFeedback";
 import { useEffect, useState } from "react";
 import CreatePoll from "./components/tutor/CreatePoll";
 import PollAdmin from "./components/tutor/PollAdmin";
+import IsLoading from "./components/IsLoading";
 
 const auth = getAuth(firebaseApp);
-
-//Routing
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
 	const [sessionId, setSessionId] = useState("");
