@@ -52,10 +52,19 @@ button,
   border-radius: 3px;
   font-size: 1.2rem;
   letter-spacing: 0.35px;
+  cursor:pointer;
 }
+
+
 button:hover,
 .primaryButton:hover {
   background-color: var(--hover-purple);
+}
+
+.primaryButton {
+  padding: 1.2rem;
+  display: inline-block;
+  text-decoration: none;
 }
 
 button:disabled, .primaryButton:disabled {
@@ -74,10 +83,4 @@ button.unselectedVoteButton:disabled{
   background-color: var(--light-grey);
 }
 
-/*  
-general button styling
-colors
-responsiveness
-input boxes
-font sizes, weights for heading, subheading and body
-   */
+

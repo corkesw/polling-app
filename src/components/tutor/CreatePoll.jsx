@@ -177,7 +177,7 @@ const CreatePoll = ({
                     tabIndex="1"
                     onChange={questionChange}
                     type="text"
-                    id="question"
+                    id="tutor__question"
                     value={question}
                   />
                 </div>
