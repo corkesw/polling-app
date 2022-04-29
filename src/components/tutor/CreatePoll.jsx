@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import firebaseApp from "../../firebase.js";
 import { getDatabase, ref, set } from "firebase/database";
 import "../../styles/TutorView.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { wipePoll } from "../../utils/localStorage.js";
 import ErrorFeedback from "../adminComponents/ErrorFeedback.jsx";
+import TutorSessionBar from "./TutorSessionBar.jsx";
 
 const database = getDatabase(firebaseApp);
 
-const CreatePoll = ({ sessionId }) => {
+const CreatePoll = ({
+  sessionId,
+  setSessionId,
+  sessionName,
+  setSessionName,
+  isUser,
+}) => {
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState(["", ""]);
   const [correctAnswers, setCorrectAnswers] = useState([]); // array to allow for multiple correct answers beyond MVP
@@ -142,119 +149,137 @@ const CreatePoll = ({ sessionId }) => {
 
   return (
     <>
-      {sessionId === sessionIdFromParams ? (
-        <div className="content__box">
-          <h2>Create Poll</h2>
-          <form
-            className="poll__form"
-            onSubmit={handleSubmit}
-            onKeyPress={(e) => {
-              e.key === "Enter" && e.preventDefault();
-            }}
-          >
-            {}
-            <div className="question">
-              <label className="input question__label" htmlFor="question">
-                Question
-              </label>
-              <input
-                className="question__input"
-                tabIndex="1"
-                onChange={questionChange}
-                type="text"
-                id="question"
-                value={question}
-              />
-            </div>
-            {answers.map((_, index) => {
-              return (
-                <div className="input__line " key={index}>
-                  <label
-                    className="input answer__line"
-                    htmlFor={`answer${index + 1}`}
-                  >
-                    <span className="answer__label">Answer </span> {index + 1}
+      {isUser ? (
+        <>
+          <TutorSessionBar
+            sessionId={sessionId}
+            setSessionId={setSessionId}
+            sessionName={sessionName}
+            setSessionName={setSessionName}
+          />
+          {sessionId ? (
+            <div className="content__box">
+              <h2>Create Poll</h2>
+              <form
+                className="poll__form"
+                onSubmit={handleSubmit}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && e.preventDefault();
+                }}
+              >
+                {}
+                <div className="question">
+                  <label className="input question__label" htmlFor="question">
+                    Question
                   </label>
-
                   <input
-                    className="input answer__box"
-                    onKeyDown={(e) => {
-                      if (e.key === "Tab" && index === answers.length - 1) {
-                        addAnswer();
-                      }
-                    }}
-                    onChange={(e) => {
-                      answerChange(e, index);
-                    }}
+                    className="question__input"
+                    tabIndex="1"
+                    onChange={questionChange}
                     type="text"
-                    id={`answer${index + 1}`}
-                    value={answers[index]}
-                    tabIndex={index + 2}
-                  ></input>
+                    id="question"
+                    value={question}
+                  />
+                </div>
+                {answers.map((_, index) => {
+                  return (
+                    <div className="input__line " key={index}>
+                      <label
+                        className="input answer__line"
+                        htmlFor={`answer${index + 1}`}
+                      >
+                        <span className="answer__label">Answer </span>{" "}
+                        {index + 1}
+                      </label>
 
-                  <label className="container">
-                    <input
-                      className="checkbox"
-                      onChange={(e) => {
-                        handleCheckBox(e, index);
-                      }}
-                      type="checkbox"
-                      checked={correctAnswers.includes(index)}
-                    ></input>
-                    <div className="checkmark"></div>
-                  </label>
+                      <input
+                        className="input answer__box"
+                        onKeyDown={(e) => {
+                          if (e.key === "Tab" && index === answers.length - 1) {
+                            addAnswer();
+                          }
+                        }}
+                        onChange={(e) => {
+                          answerChange(e, index);
+                        }}
+                        type="text"
+                        id={`answer${index + 1}`}
+                        value={answers[index]}
+                        tabIndex={index + 2}
+                      ></input>
 
+                      <label className="container">
+                        <input
+                          className="checkbox"
+                          onChange={(e) => {
+                            handleCheckBox(e, index);
+                          }}
+                          type="checkbox"
+                          checked={correctAnswers.includes(index)}
+                        ></input>
+                        <div className="checkmark"></div>
+                      </label>
+
+                      <button
+                        className="delete__button"
+                        onClick={() => {
+                          removeAnswer(index);
+                        }}
+                        type="button"
+                      >
+                        X
+                      </button>
+                    </div>
+                  );
+                })}
+                <div className="input__line">
+                  <span></span>
                   <button
-                    className="delete__button"
                     onClick={() => {
-                      removeAnswer(index);
+                      console.log("hi");
+                      setAnswers(["", ""]);
+                      setQuestion("");
+                      setCorrectAnswers([]);
+                      wipePoll();
                     }}
                     type="button"
+                    className="ses__button"
                   >
-                    X
+                    Clear Form
+                  </button>
+                  <button
+                    onClick={() => {
+                      addAnswer();
+                    }}
+                    type="button"
+                    className="ses__button"
+                  >
+                    Add answer
                   </button>
                 </div>
-              );
-            })}
-            <div className="input__line">
-              <span></span>
-              <button
-                onClick={() => {
-                  console.log("hi");
-                  setAnswers(["", ""]);
-                  setQuestion("");
-                  setCorrectAnswers([]);
-                  wipePoll();
-                }}
-                type="button"
-                className="ses__button"
-              >
-                Clear Form
-              </button>
-              <button
-                onClick={() => {
-                  addAnswer();
-                }}
-                type="button"
-                className="ses__button"
-              >
-                Add answer
-              </button>
+                <div className="input__line">
+                  <span></span>
+                  <button
+                    disabled={
+                      answers.filter((answer) => answer !== "").length < 2
+                    }
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="input__line">
-              <span></span>
-              <button
-                disabled={answers.filter((answer) => answer !== "").length < 2}
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      ) : (
-        <>
-       {sessionId ? <ErrorFeedback code={404} error={`Check your URL! Current session is ${sessionId}`}/> : <ErrorFeedback code={404} error={"Session not found"}/>}
+          ) : (
+            <ErrorFeedback
+              code={"Hey!"}
+              error={"You must start a session to create a poll"}
+            />
+          )}
         </>
+      ) : (
+        <Link className="primaryButton" to="/login">
+          Tutor Login
+        </Link>
       )}
     </>
   );
