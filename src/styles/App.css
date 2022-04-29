@@ -62,6 +62,14 @@ button[disabled]:hover {
   background-color: var(--light-purple);
 }
 
+button.selectedVoteButton:disabled {
+  background-color: var(--dark-purple);
+}
+
+button.unselectedVoteButton:disabled{ 
+  background-color: var(--light-grey);
+}
+
 /*  
 general button styling
 colors

@@ -5,6 +5,7 @@ import PieMaker from "../PieMaker";
 import firebaseApp from "../../firebase";
 import "../../styles/TutorView.css";
 import { wipePoll } from "../../utils/localStorage.js";
+import colours from "../../utils/colours";
 
 const database = getDatabase(firebaseApp);
 
@@ -13,36 +14,6 @@ const PollAdmin = ({ sessionId }) => {
   const [answers, setAnswers] = useState([]);
   const [reveal, setReveal] = useState(false);
   const navigate = useNavigate();
-
-  const colours = [
-    "red",
-    "blue",
-    "#1ca537",
-    "#7c5204",
-    "#55008e",
-    "#11371a",
-    "#1632FF",
-    "#FF0D1A",
-    "#E6B3B3",
-    "#6680B3",
-    "#66991A",
-    "#FF99E6",
-    "#CCFF1A",
-    "#33FFCC",
-    "#66994D",
-    "#B366CC",
-    "#4D8000",
-    "#B33300",
-    "#CC80CC",
-    "#66664D",
-    "#991AFF",
-    "#E666FF",
-    "#4DB3FF",
-    "#1AB399",
-    "#E666B3",
-    "#33991A",
-    "#CC9999",
-  ];
 
   const revealAnswer = () => {
     const path = `data/sessions/${sessionId}/pollData/reveal`;
@@ -91,7 +62,9 @@ const PollAdmin = ({ sessionId }) => {
       <h2>Poll Admin</h2>
       <h3>{question}</h3>
 
-      {answers.length ? <PieMaker answers={answers} /> : null}
+      {answers.length ? (
+        <PieMaker answers={answers} revealChart={true} />
+      ) : null}
       <div className="control__buttons">
         <button onClick={reuseQuestion} className="ses__button">
           Back
