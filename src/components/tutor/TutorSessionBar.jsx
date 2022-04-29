@@ -85,7 +85,7 @@ const TutorSessionBar = ({
           <button>Start session</button>
         </form>
       ) : (
-        <div className="session__box">
+        <div className="session__box session__active">
           <div>
             {sessionName} :{" "}
             <span className="student__link">
