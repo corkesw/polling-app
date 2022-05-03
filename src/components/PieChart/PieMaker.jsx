@@ -77,6 +77,7 @@ const PieMaker = ({ answers, revealChart, renderStudentLabel }) => {
     )
   }
 
+  
   return (
     <>
       <div className={revealChart ? "pie__chart" : "hidden__pie__chart"}>
