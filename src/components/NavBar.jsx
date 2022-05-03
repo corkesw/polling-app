@@ -95,9 +95,9 @@ const NavBar = () => {
 			</Link>
 			<>
 				<div id="mySidebar" className={`sidebar sidebar__open__${isSidebarOpen}`}>
-					<button className="closebtn" onClick={changeSidebar}>
+					{/* <button className="closebtn" onClick={changeSidebar}>
 						&#9776;
-					</button>
+					</button> */}
 					<a href="#">Logout</a>
 				</div>
 				<div id="main">

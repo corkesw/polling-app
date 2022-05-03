@@ -41,14 +41,14 @@ nav {
 /* The sidebar menu */
 .sidebar {
   height: 100%; /* 100% Full-height */
-  position: fixed; /* Stay in place */
+  position: absolute; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 0;
+  top: 100px;
   right: 0;
   height: auto;
   background-color: var(--white); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 5.5em; /*Place content 60px from the top */
+  padding-top: 1.0em; /*Place content 60px from the top */
   padding-bottom: 1em;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
   /* opacity: 0.9; */
@@ -113,11 +113,11 @@ nav {
 
 .sidebar__open__true {
   width: 200px;
-
 }
 
 .sidebar__open__false {
   width: 0px;
+  
 }
 
 @media screen and (min-width: 480px) {
@@ -155,6 +155,6 @@ nav {
     right: 0.5em;
   }
   .sidebar {
-    padding-top: 7em; /*Place content 60px from the top */
+    padding-top: 2em; /*Place content 60px from the top */
   }
 }
