@@ -26,19 +26,26 @@ const CreatePoll = ({
     const localQuestion = localStorage.getItem("question");
     const localAnswers = localStorage.getItem("answers");
     const localCorrectAnswers = localStorage.getItem("correctAnswers");
+    console.log(localQuestion);
     // check local storage for question data if navigating back from admin or page refresh
     if (localQuestion) {
       setQuestion(localQuestion);
+    } else {
+      setQuestion("");
     }
     if (localAnswers) {
       const parsedLocalAnswers = JSON.parse(localAnswers);
       setAnswers(parsedLocalAnswers);
+    } else {
+      setAnswers(["", ""]);
     }
     if (localCorrectAnswers) {
       const parsedLocalCorrectAnswers = JSON.parse(localCorrectAnswers);
       setCorrectAnswers(parsedLocalCorrectAnswers);
+    } else {
+      setCorrectAnswers([]);
     }
-  }, []);
+  }, [sessionId]);
 
   // controlled component for question input
   const questionChange = (e) => {
@@ -236,7 +243,6 @@ const CreatePoll = ({
                   <span></span>
                   <button
                     onClick={() => {
-                      console.log("hi");
                       setAnswers(["", ""]);
                       setQuestion("");
                       setCorrectAnswers([]);

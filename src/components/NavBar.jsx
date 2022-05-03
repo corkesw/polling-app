@@ -10,106 +10,74 @@ import firebaseApp from "../firebase";
 const auth = getAuth(firebaseApp);
 
 const NavBar = () => {
-	const [user, loading, error] = useAuthState(auth);
-	const [innerWidth, setInnerWidth] = useState(0);
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
+  const [innerWidth, setInnerWidth] = useState(0);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-	const getWindowDimensions = () => {
-		const { innerWidth: width } = window;
-		return { width };
-	};
+  const getWindowDimensions = () => {
+    const { innerWidth: width } = window;
+    return { width };
+  };
 
-	useEffect(() => {
-		const handleResize = () => {
-			setInnerWidth(getWindowDimensions());
-		};
+  useEffect(() => {
+    const handleResize = () => {
+      setInnerWidth(getWindowDimensions());
+    };
 
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const logout = () => {
-		signOut(auth);
-		navigate("/");
-	};
+  
 
-	const changeSidebar = () => {
-		setIsSidebarOpen((isOpen) => {
-			return !isOpen;
-		});
-	};
+  const changeSidebar = () => {
+    setIsSidebarOpen((isOpen) => {
+      return !isOpen;
+    });
+  };
 
-	console.log(isSidebarOpen);
+  const logout = () => {
+    signOut(auth);
+	changeSidebar()
+    navigate("/");
+  };
 
-	// const renderButtons = () => {
-	// 	return (
-	// 		// <>
-	// 		// 	<div id="mySidebar" className={`sidebar sidebar__open__${isSidebarOpen}`}>
-	// 		// 		<button className="closebtn" onClick={changeSidebar}>
-	// 		// 			&#9776;
-	// 		// 		</button>
-	// 		// 		<a href="#">Logout</a>
-	// 		// 	</div>
-	// 		// 	<div id="main">
-	// 		// 		<button className="openbtn" onClick={changeSidebar}>
-	// 		// 			&#9776;
-	// 		// 		</button>
-	// 		// 		{/* <h2>Collapsed Sidebar</h2>
-	// 		// 			<p>Content...</p> */}
-	// 		// 	</div>
-	// 		// </>
-	// 	// );
-	// 	// } else {
-	// 	// 	if (user) {
-	// 	// 		return (
-	// 	// 			<div>
-	// 	// 				<Link className="nav-link" to="/tutor">
-	// 	// 					Polls
-	// 	// 				</Link>
-	// 	// 				<Link className="nav-link" to="/admin">
-	// 	// 					Admin
-	// 	// 				</Link>
-	// 	// 				<button className="primaryButton" onClick={logout}>
-	// 	// 					Logout
-	// 	// 				</button>
-	// 	// 			</div>
-	// 	// 		);
-	// 	// 	} else {
-	// 	// 		return (
-	// 	// 			<Link className="primaryButton" to="/login">
-	// 	// 				Tutor login
-	// 	// 			</Link>
-	// 	// 		);
-	// 	// 	}
-	// 	// }
-	// // };
+  const login = () => {
+	  changeSidebar()
+	  navigate("/")
+  }
 
-	return (
-		<nav className="nav">
-			<img src={logo} className="logo"></img>
+  console.log(isSidebarOpen);
 
-			<Link className="home__link__container" to="/">
-				<h1 className="grey-1 align-left home__link">Ask</h1>
-			</Link>
-			<>
-				<div id="mySidebar" className={`sidebar sidebar__open__${isSidebarOpen}`}>
-					{/* <button className="closebtn" onClick={changeSidebar}>
+  return (
+    <nav className="nav">
+      <img src={logo} className="logo"></img>
+
+      <Link className="home__link__container" to="/">
+        <h1 className="grey-1 align-left home__link">Ask</h1>
+      </Link>
+      <>
+        <div
+          id="mySidebar"
+          className={`sidebar sidebar__open__${isSidebarOpen}`}
+        >
+          {/* <button className="closebtn" onClick={changeSidebar}>
 						&#9776;
 					</button> */}
-					<a href="#">Logout</a>
-				</div>
-				<div id="main">
-					<button className="openbtn" onClick={changeSidebar}>
-						&#9776;
-					</button>
-					{/* <h2>Collapsed Sidebar</h2>
+          {user ? <p onClick={logout}>Logout</p> : <p onClick={login}>Login</p>}
+        </div>
+        <div id="main">
+          <button className="openbtn" onClick={changeSidebar}>
+            &#9776;
+          </button>
+          {/* <h2>Collapsed Sidebar</h2>
 						<p>Content...</p> */}
-				</div>
-			</>
-		</nav>
-	);
+        </div>
+      </>
+    </nav>
+  );
 };
 
 export default NavBar;
